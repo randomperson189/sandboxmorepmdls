@@ -1,4 +1,4 @@
-# sandboxmorepmdls
+# Sandbox-more-Playermodels
 Sandbox but with more Player Models
 
 This is still in development so expect bugs such as missing animations, features and other broken shit.
