@@ -1,0 +1,9 @@
+// Converted with vmt_to_vmat.py
+
+Layer0
+{
+	shader "complex.vfx"
+
+	TextureColor "materials\models\odessa\odessa_face_color.tga"
+	TextureNormal "materials\models\odessa\odessa_face_normal.tga"
+}

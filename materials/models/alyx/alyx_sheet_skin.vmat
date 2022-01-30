@@ -1,0 +1,11 @@
+// Converted with vmt_to_vmat.py
+
+Layer0
+{
+	shader "complex.vfx"
+
+	TextureColor "materials\models\alyx\alyx_sheet_skin_color.tga"
+	TextureNormal "materials\models\alyx\alyx_sheet_skin_normal.tga"
+	F_SPECULAR 1
+	TextureRoughness "[60 60 60 0.000]"
+}

@@ -1,0 +1,12 @@
+// Converted with vmt_to_vmat.py
+
+Layer0
+{
+	shader "complex.vfx"
+
+	TextureColor "materials\models\alyx\alyx_faceandhair_color.tga"
+	TextureNormal "materials\models\alyx\alyx_faceandhair_normal.tga"
+	TextureAmbientOcclusion "materials\models\alyx\alyx_faceandhair_ao.tga"
+	F_SPECULAR 1
+	TextureRoughness "materials\models\alyx\alyx_faceandhair_rough.tga"
+}
