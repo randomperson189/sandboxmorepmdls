@@ -36,7 +36,7 @@ public class ThirdPersonCamera : Camera
 
 		Viewer = null;
 
-		Rot = myRotation;
+		Rotation = myRotation;
 
 		if ( thirdperson_collision )
 		{
@@ -49,7 +49,7 @@ public class ThirdPersonCamera : Camera
 		}
 		else
 		{
-			Pos = targetPos;
+			Position = targetPos;
 		}
 	}
 

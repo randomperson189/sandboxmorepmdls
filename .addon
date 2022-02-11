@@ -1,13 +1,13 @@
 {
   "SharedAssets": "*.*",
-  "Title": "Sandbox more Player Models",
+  "Title": "Sandbox More Playermodels",
   "Type": "game",
-  "Org": "local",
+  "Org": "rdmpersn",
   "Ident": "sandboxmorepmdls",
   "Schema": 1,
   "HasAssets": true,
   "AssetsPath": "",
-  "ResourcePaths": null,
+  "ResourcePaths": [],
   "HasCode": true,
   "CodePath": "code",
   "RootNamespace": "Sandbox"

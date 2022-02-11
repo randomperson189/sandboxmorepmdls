@@ -18,8 +18,8 @@ namespace Sandbox
 			// lerp the focus point
 			//FocusPoint = GetSpectatePoint();
 
-			//Pos = FocusPoint + GetViewOffset();
-			//Rot = Input.Rotation;
+			//Position = FocusPoint + GetViewOffset();
+			//Rotation = Input.Rotation;
 			//FieldOfView = FieldOfView.LerpTo( 50, Time.Delta * 3.0f );
 
 			//Viewer = null;
@@ -37,7 +37,7 @@ namespace Sandbox
 
 			Viewer = null;
 
-			Rot = Input.Rotation;
+			Rotation = Input.Rotation;
 
 			var tr = Trace.Ray( center, targetPos )
 				.Ignore( player.Corpse )
