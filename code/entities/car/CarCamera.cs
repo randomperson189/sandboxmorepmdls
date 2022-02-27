@@ -1,7 +1,7 @@
 ﻿using Sandbox;
 using System;
 
-public class CarCamera : Camera
+public class CarCamera : CameraMode
 {
 	protected virtual float MinFov => 80.0f;
 	protected virtual float MaxFov => 100.0f;
@@ -131,7 +131,7 @@ public class CarCamera : Camera
 		var pawn = Local.Pawn;
 		if ( pawn == null ) return;
 
-		Position = pawn.EyePos;
+		Position = pawn.EyePosition;
 		Rotation = pawn.Rotation * (orbitYawRot * orbitPitchRot);
 
 		Viewer = pawn;
@@ -151,7 +151,7 @@ public class CarCamera : Camera
 			.WorldOnly()
 			.Run();
 
-		Position = tr.EndPos;
+		Position = tr.EndPosition;
 
 		Viewer = null;
 	}

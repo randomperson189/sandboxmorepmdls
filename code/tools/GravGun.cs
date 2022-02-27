@@ -1,34 +1,32 @@
 ﻿using Sandbox;
-using Sandbox.Joints;
 using System;
 using System.Linq;
 
-[Library( "gravgun", Title = "Gravity Gun" )]
-public partial class GravGun : Weapon
+[Library( "gravgun" )]
+public partial class GravGun : Carriable
 {
 	public override string ViewModelPath => "weapons/rust_pistol/v_rust_pistol.vmdl";
 
 	private PhysicsBody holdBody;
-	private WeldJoint holdJoint;
-	private GenericJoint collisionJoint;
+	private FixedJoint holdJoint;
 
 	public PhysicsBody HeldBody { get; private set; }
 	public Rotation HeldRot { get; private set; }
 	public ModelEntity HeldEntity { get; private set; }
 
-	protected float MaxPullDistance => 2000.0f;
-	protected float MaxPushDistance => 500.0f;
-	protected float LinearFrequency => 10.0f;
-	protected float LinearDampingRatio => 1.0f;
-	protected float AngularFrequency => 10.0f;
-	protected float AngularDampingRatio => 1.0f;
-	protected float PullForce => 20.0f;
-	protected float PushForce => 1000.0f;
-	protected float ThrowForce => 2000.0f;
-	protected float HoldDistance => 50.0f;
-	protected float AttachDistance => 150.0f;
-	protected float DropCooldown => 0.5f;
-	protected float BreakLinearForce => 2000.0f;
+	protected virtual float MaxPullDistance => 2000.0f;
+	protected virtual float MaxPushDistance => 500.0f;
+	protected virtual float LinearFrequency => 10.0f;
+	protected virtual float LinearDampingRatio => 1.0f;
+	protected virtual float AngularFrequency => 10.0f;
+	protected virtual float AngularDampingRatio => 1.0f;
+	protected virtual float PullForce => 20.0f;
+	protected virtual float PushForce => 1000.0f;
+	protected virtual float ThrowForce => 2000.0f;
+	protected virtual float HoldDistance => 50.0f;
+	protected virtual float AttachDistance => 150.0f;
+	protected virtual float DropCooldown => 0.5f;
+	protected virtual float BreakLinearForce => 2000.0f;
 
 	private TimeSince timeSinceDrop;
 
@@ -42,11 +40,6 @@ public partial class GravGun : Weapon
 		SetInteractsAs( CollisionLayer.Debris );
 	}
 
-	public override void SimulateAnimator( PawnAnimator anim )
-	{
-		anim.SetParam( "holdtype", 6 );
-	}
-
 	public override void Simulate( Client client )
 	{
 		if ( Owner is not Player owner ) return;
@@ -56,13 +49,13 @@ public partial class GravGun : Weapon
 
 		using ( Prediction.Off() )
 		{
-			var eyePos = owner.EyePos;
-			var eyeRot = owner.EyeRot;
-			var eyeDir = owner.EyeRot.Forward;
+			var eyePos = owner.EyePosition;
+			var eyeRot = owner.EyeRotation;
+			var eyeDir = owner.EyeRotation.Forward;
 
 			if ( HeldBody.IsValid() && HeldBody.PhysicsGroup != null )
 			{
-				if ( holdJoint.IsValid && !holdJoint.IsActive )
+				if ( holdJoint.IsValid() && !holdJoint.IsActive )
 				{
 					GrabEnd();
 				}
@@ -123,7 +116,7 @@ public partial class GravGun : Weapon
 				if ( tr.Distance < MaxPushDistance && !IsBodyGrabbed( body ) )
 				{
 					var pushScale = 1.0f - Math.Clamp( tr.Distance / MaxPushDistance, 0.0f, 1.0f );
-					body.ApplyImpulseAt( tr.EndPos, eyeDir * (body.Mass * (PushForce * pushScale)) );
+					body.ApplyImpulseAt( tr.EndPosition, eyeDir * (body.Mass * (PushForce * pushScale)) );
 				}
 			}
 			else if ( Input.Down( InputButton.Attack2 ) )
@@ -156,7 +149,7 @@ public partial class GravGun : Weapon
 	{
 		if ( !holdBody.IsValid() )
 		{
-			holdBody = new PhysicsBody
+			holdBody = new PhysicsBody( Map.Physics )
 			{
 				BodyType = PhysicsBodyType.Keyframed
 			};
@@ -233,21 +226,13 @@ public partial class GravGun : Weapon
 		holdBody.Position = grabPos;
 		holdBody.Rotation = HeldBody.Rotation;
 
-		HeldBody.Wake();
-		HeldBody.EnableAutoSleeping = false;
+		HeldBody.Sleeping = false;
+		HeldBody.AutoSleep = false;
 
-		collisionJoint = PhysicsJoint.Generic
-			.From( (Owner as Player).PhysicsBody )
-			.To( HeldBody )
-			.Create();
-
-		holdJoint = PhysicsJoint.Weld
-			.From( holdBody )
-			.To( HeldBody, HeldBody.LocalMassCenter )
-			.WithLinearSpring( LinearFrequency, LinearDampingRatio, 0.0f )
-			.WithAngularSpring( AngularFrequency, AngularDampingRatio, 0.0f )
-			.Breakable( HeldBody.Mass * BreakLinearForce, 0 )
-			.Create();
+		holdJoint = PhysicsJoint.CreateFixed( holdBody, HeldBody.MassCenterPoint() );
+		holdJoint.SpringLinear = new( LinearFrequency, LinearDampingRatio );
+		holdJoint.SpringAngular = new( AngularFrequency, AngularDampingRatio );
+		holdJoint.Strength = HeldBody.Mass * BreakLinearForce;
 
 		HeldEntity = entity;
 
@@ -256,19 +241,12 @@ public partial class GravGun : Weapon
 
 	private void GrabEnd()
 	{
-		if ( holdJoint.IsValid )
-		{
-			holdJoint.Remove();
-		}
-
-		if ( collisionJoint.IsValid )
-		{
-			collisionJoint.Remove();
-		}
+		holdJoint?.Remove();
+		holdJoint = null;
 
 		if ( HeldBody.IsValid() )
 		{
-			HeldBody.EnableAutoSleeping = true;
+			HeldBody.AutoSleep = true;
 		}
 
 		if ( HeldEntity.IsValid() )

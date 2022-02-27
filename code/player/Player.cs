@@ -37,8 +37,8 @@ partial class SandboxPlayer : Player
 
 	public override void Spawn()
 	{
-		Camera = new FirstPersonCamera();
-		//LastCamera = Camera;
+		CameraMode = new FirstPersonCamera();
+		//LastCamera = CameraMode;
 
 		base.Spawn();
 	}
@@ -55,8 +55,8 @@ partial class SandboxPlayer : Player
 		Controller = new WalkController();
 		Animator = new PlayerAnimator();
 
-		//Camera = LastCamera;
-		Camera = new FirstPersonCamera();
+		//CameraMode = LastCamera;
+		CameraMode = new FirstPersonCamera();
 
 		if ( DevController is NoclipController )
 			DevController = null;
@@ -98,8 +98,8 @@ partial class SandboxPlayer : Player
 		Vehicle = null;
 
 		BecomeRagdollOnClient( Velocity, lastDamage.Flags, lastDamage.Position, lastDamage.Force, GetHitboxBone( lastDamage.HitboxIndex ) );
-		//LastCamera = Camera;
-		Camera = new SpectateRagdollCamera();
+		//LastCamera = CameraMode;
+		CameraMode = new SpectateRagdollCamera();
 		Controller = null;
 
 		EnableAllCollisions = false;
@@ -147,9 +147,9 @@ partial class SandboxPlayer : Player
 		return base.GetActiveAnimator();
 	}
 
-	public ICamera GetActiveCamera()
+	public CameraMode GetActiveCamera()
 	{
-		return Camera;
+		return CameraMode;
 	}
 
 	public override void Simulate( Client cl )
@@ -190,24 +190,24 @@ partial class SandboxPlayer : Player
 
 		if ( Input.Pressed( InputButton.View ) )
 		{
-			if ( Camera is not FirstPersonCamera )
+			if ( CameraMode is not FirstPersonCamera )
 			{
-				Camera = new FirstPersonCamera();
+				CameraMode = new FirstPersonCamera();
 			}
 			else
 			{
-				Camera = new ThirdPersonCamera();
+				CameraMode = new ThirdPersonCamera();
 			}
 		}
 
-		Camera = GetActiveCamera();
+		CameraMode = GetActiveCamera();
 
 		if ( Input.Pressed( InputButton.Drop ) )
 		{
 			var dropped = Inventory.DropActive();
 			if ( dropped != null )
 			{
-				dropped.PhysicsGroup.ApplyImpulse( Velocity + EyeRot.Forward * 500.0f + Vector3.Up * 100.0f, true );
+				dropped.PhysicsGroup.ApplyImpulse( Velocity + EyeRotation.Forward * 500.0f + Vector3.Up * 100.0f, true );
 				dropped.PhysicsGroup.ApplyAngularImpulse( Vector3.Random * 100.0f, true );
 
 				timeSinceDropped = 0;
@@ -225,7 +225,7 @@ partial class SandboxPlayer : Player
 	[ServerCmd( "inventory_current" )]
 	public static void SetInventoryCurrent( string entName )
 	{
-		var target = ConsoleSystem.Caller.Pawn;
+		var target = ConsoleSystem.Caller.Pawn as Player;
 		if ( target == null ) return;
 
 		var inventory = target.Inventory;

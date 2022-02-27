@@ -1,7 +1,7 @@
 ﻿
 namespace Sandbox
 {
-	public class SpectateRagdollCamera : Camera
+	public class SpectateRagdollCamera : CameraMode
 	{
 		public override void Activated()
 		{
@@ -44,7 +44,7 @@ namespace Sandbox
 				.Radius( 4 )
 				.Run();
 
-			Position = tr.EndPos;
+			Position = tr.EndPosition;
 		}
 		
 		public virtual Vector3 GetSpectatePoint()

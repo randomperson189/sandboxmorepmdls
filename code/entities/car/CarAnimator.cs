@@ -5,10 +5,12 @@ namespace Sandbox
 	{
 		public override void Simulate()
 		{
-			ResetParams();
+			var player = Pawn as Player;
 
-			SetParam( "b_grounded", true );
-			SetParam( "b_sit", true );
+			ResetParameters();
+
+			SetAnimParameter( "b_grounded", true );
+			SetAnimParameter( "b_sit", true );
 			
 			float modelRotation = Rotation.Forward.Normal.EulerAngles.yaw;
 			float lookRotation = Input.Rotation.Forward.Normal.EulerAngles.yaw;
@@ -23,13 +25,13 @@ namespace Sandbox
 			//Log.Info( modelRotation + " : " + lookRotation + " :: " + rotationDifference );
 			//Log.Info( Input.Rotation.Pitch() );
 
-			SetParam( "aim_pitch", Input.Rotation.Pitch() );
-			SetParam( "aim_yaw", rotationDifference );
+			SetAnimParameter( "aim_pitch", Input.Rotation.Pitch() );
+			SetAnimParameter( "aim_yaw", rotationDifference );
 
-			if ( Pawn.ActiveChild is BaseCarriable carry )
+			if ( player != null && player.ActiveChild is BaseCarriable carry )
 				carry.SimulateAnimator( this );
 			else
-				SetParam( "holdtype", 10 );
+				SetAnimParameter( "holdtype", 10 );
 		}
 	}
 }

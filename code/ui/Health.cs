@@ -13,7 +13,7 @@ public class Health : Panel
 
 	public override void Tick()
 	{
-		var player = Local.Pawn;
+		var player = Local.Pawn as Player;
 		if ( player == null ) return;
 
 		healthValue.Text = $"Health: {player.Health.CeilToInt()}";

@@ -2,7 +2,7 @@
 using System.Collections;
 using Sandbox;
 
-public class ThirdPersonCamera : Camera
+public class ThirdPersonCamera : CameraMode
 {
 	[ConVar.Replicated]
 	public static bool thirdperson_mayamode { get; set; } = false;
@@ -45,7 +45,7 @@ public class ThirdPersonCamera : Camera
 				.Radius( 8 )
 				.Run();
 
-			Position = tr.EndPos;
+			Position = tr.EndPosition;
 		}
 		else
 		{

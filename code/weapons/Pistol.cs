@@ -23,7 +23,7 @@ partial class Pistol : Weapon
 
 	public override void SimulateAnimator( PawnAnimator anim )
 	{
-		anim.SetParam( "holdtype", 0 );
+		anim.SetAnimParameter( "holdtype", 0 );
 	}
 
 	public override bool CanPrimaryAttack()
@@ -42,7 +42,7 @@ partial class Pistol : Weapon
 			return;
 		}
 
-		(Owner as AnimEntity)?.SetAnimBool( "b_attack", true );
+		(Owner as AnimEntity)?.SetAnimParameter( "b_attack", true );
 
 		//
 		// Tell the clients to play the shoot effects

@@ -83,14 +83,15 @@ partial class Tool : Weapon
 	[Event.Frame]
 	public void OnFrame()
 	{
-		if ( !IsActiveChild() ) return;
+		if ( Owner is Player player && player.ActiveChild != this )
+			return;
 
 		CurrentTool?.OnFrame();
 	}
 
 	public override void SimulateAnimator( PawnAnimator anim )
 	{
-		anim.SetParam( "holdtype", 0 );
+		anim.SetAnimParameter( "holdtype", 0 );
 	}
 }
 

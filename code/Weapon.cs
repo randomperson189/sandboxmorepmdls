@@ -84,7 +84,7 @@ public partial class Weapon : BaseWeapon, IUse
 
 		IsReloading = true;
 
-		(Owner as AnimEntity).SetAnimBool( "b_reload", true );
+		(Owner as AnimEntity).SetAnimParameter( "b_reload", true );
 
 		StartReloadEffects();
 	}
@@ -122,7 +122,7 @@ public partial class Weapon : BaseWeapon, IUse
 	[ClientRpc]
 	public virtual void StartReloadEffects()
 	{
-		ViewModelEntity?.SetAnimBool( "reload", true );
+		ViewModelEntity?.SetAnimParameter( "reload", true );
 
 		// TODO - player third person model reload
 	}
@@ -145,7 +145,7 @@ public partial class Weapon : BaseWeapon, IUse
 			new Sandbox.ScreenShake.Perlin();
 		}
 
-		ViewModelEntity?.SetAnimBool( "fire", true );
+		ViewModelEntity?.SetAnimParameter( "fire", true );
 		CrosshairPanel?.CreateEvent( "fire" );
 	}
 
@@ -161,7 +161,7 @@ public partial class Weapon : BaseWeapon, IUse
 
 		for ( int i = 0; i < bulletCount; i++ )
 		{
-			var forward = Owner.EyeRot.Forward;
+			var forward = Owner.EyeRotation.Forward;
 			forward += (Vector3.Random + Vector3.Random + Vector3.Random + Vector3.Random) * spread * 0.25f;
 			forward = forward.Normal;
 
@@ -169,14 +169,14 @@ public partial class Weapon : BaseWeapon, IUse
 			// ShootBullets is coded in a way where we can have bullets pass through shit
 			// or bounce off shit, in which case it'll return multiple results
 			//
-			foreach ( var tr in TraceBullet( Owner.EyePos, Owner.EyePos + forward * 5000, bulletSize ) )
+			foreach ( var tr in TraceBullet( Owner.EyePosition, Owner.EyePosition + forward * 5000, bulletSize ) )
 			{
 				tr.Surface.DoBulletImpact( tr );
 
 				if ( !IsServer ) continue;
 				if ( !tr.Entity.IsValid() ) continue;
 
-				var damageInfo = DamageInfo.FromBullet( tr.EndPos, forward * 100 * force, damage )
+				var damageInfo = DamageInfo.FromBullet( tr.EndPosition, forward * 100 * force, damage )
 					.UsingTraceResult( tr )
 					.WithAttacker( Owner )
 					.WithWeapon( this );
@@ -265,9 +265,10 @@ public partial class Weapon : BaseWeapon, IUse
 
 	public virtual bool IsUsable( Entity user )
 	{
+		var player = user as Player;
 		if ( Owner != null ) return false;
 
-		if ( user.Inventory is Inventory inventory )
+		if ( player.Inventory is Inventory inventory )
 		{
 			return inventory.CanAdd( this );
 		}

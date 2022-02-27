@@ -29,7 +29,7 @@ partial class Fists : Weapon
 		Sound test = Sound.FromEntity( "slam_throw", this );
 			test.SetVolume( 0.5f );
 
-		(Owner as AnimEntity)?.SetAnimBool( "b_attack", true );
+		(Owner as AnimEntity)?.SetAnimParameter( "b_attack", true );
 	}
 
 	public override void AttackPrimary()
@@ -48,17 +48,17 @@ partial class Fists : Weapon
 
 	public override void SimulateAnimator( PawnAnimator anim )
 	{
-		anim.SetParam( "holdtype", 11 );
+		anim.SetAnimParameter( "holdtype", 11 );
 	}
 
 	private bool MeleeAttack()
 	{
-		var forward = Owner.EyeRot.Forward;
+		var forward = Owner.EyeRotation.Forward;
 		forward = forward.Normal;
 
 		bool hit = false;
 
-		foreach ( var tr in TraceBullet( Owner.EyePos, Owner.EyePos + forward * 80, 20.0f ) )
+		foreach ( var tr in TraceBullet( Owner.EyePosition, Owner.EyePosition + forward * 80, 20.0f ) )
 		{
 			if ( !tr.Entity.IsValid() ) continue;
 
@@ -70,7 +70,7 @@ partial class Fists : Weapon
 
 			using ( Prediction.Off() )
 			{
-				var damageInfo = DamageInfo.FromBullet( tr.EndPos, forward * 100, 25 )
+				var damageInfo = DamageInfo.FromBullet( tr.EndPosition, forward * 100, 25 )
 					.UsingTraceResult( tr )
 					.WithAttacker( Owner )
 					.WithWeapon( this );
@@ -92,8 +92,8 @@ partial class Fists : Weapon
 			_ = new Sandbox.ScreenShake.Perlin();
 		}
 
-		ViewModelEntity?.SetAnimBool( "attack", true );
-		ViewModelEntity?.SetAnimFloat( "holdtype_attack", leftHand ? 2 : 1 );
+		ViewModelEntity?.SetAnimParameter( "attack", true );
+		ViewModelEntity?.SetAnimParameter( "holdtype_attack", leftHand ? 2 : 1 );
 	}
 
 	[ClientRpc]
@@ -106,7 +106,7 @@ partial class Fists : Weapon
 			_ = new Sandbox.ScreenShake.Perlin( 1.0f, 1.0f, 3.0f );
 		}
 
-		ViewModelEntity?.SetAnimBool( "attack", true );
-		ViewModelEntity?.SetAnimFloat( "holdtype_attack", leftHand ? 2 : 1 );
+		ViewModelEntity?.SetAnimParameter( "attack", true );
+		ViewModelEntity?.SetAnimParameter( "holdtype_attack", leftHand ? 2 : 1 );
 	}
 }

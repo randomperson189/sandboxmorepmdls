@@ -29,7 +29,7 @@ partial class Crossbow : Weapon
 			return;
 		}
 
-		(Owner as AnimEntity)?.SetAnimBool( "b_attack", true );
+		(Owner as AnimEntity)?.SetAnimParameter( "b_attack", true );
 
 		ShootEffects();
 
@@ -37,10 +37,10 @@ partial class Crossbow : Weapon
 		using ( Prediction.Off() )
 		{
 			var bolt = new CrossbowBolt();
-			bolt.Position = Owner.EyePos;
-			bolt.Rotation = Owner.EyeRot;
+			bolt.Position = Owner.EyePosition;
+			bolt.Rotation = Owner.EyeRotation;
 			bolt.Owner = Owner;
-			bolt.Velocity = Owner.EyeRot.Forward * 100;
+			bolt.Velocity = Owner.EyeRotation.Forward * 100;
 		}
 	}
 
@@ -79,12 +79,12 @@ partial class Crossbow : Weapon
 			new Sandbox.ScreenShake.Perlin( 0.5f, 4.0f, 1.0f, 0.5f );
 		}
 
-		ViewModelEntity?.SetAnimBool( "fire", true );
+		ViewModelEntity?.SetAnimParameter( "fire", true );
 		CrosshairPanel?.CreateEvent( "fire" );
 	}
 
 	public override void SimulateAnimator( PawnAnimator anim )
 	{
-		anim.SetParam( "holdtype", 7 );
+		anim.SetAnimParameter( "holdtype", 7 );
 	}
 }

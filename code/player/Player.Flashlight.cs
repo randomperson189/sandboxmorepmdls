@@ -66,16 +66,16 @@ partial class SandboxPlayer
                 {
                     _worldFlashlight = new();
                     _worldFlashlight.EnableHideInFirstPerson = true;
-                    _worldFlashlight.Rotation = EyeRot;
-                    _worldFlashlight.Position = EyePos + EyeRot.Forward * FLASHLIGHT_DISTANCE;
+                    _worldFlashlight.Rotation = EyeRotation;
+                    _worldFlashlight.Position = EyePosition + EyeRotation.Forward * FLASHLIGHT_DISTANCE;
                     _worldFlashlight.SetParent(this);
                 }
                 else
                 {
                     _viewFlashlight = new();
                     _viewFlashlight.EnableViewmodelRendering = false;
-                    _viewFlashlight.Position = EyePos + EyeRot.Forward * FLASHLIGHT_DISTANCE;
-                    _viewFlashlight.Rotation = EyeRot;
+                    _viewFlashlight.Position = EyePosition + EyeRotation.Forward * FLASHLIGHT_DISTANCE;
+                    _viewFlashlight.Rotation = EyeRotation;
                     _viewFlashlight.SetParent(this);
                 }
             }
@@ -84,8 +84,8 @@ partial class SandboxPlayer
                 if (IsServer)
                 {
 					_worldFlashlight.SetParent(null);
-                    _worldFlashlight.Rotation = EyeRot;
-                    _worldFlashlight.Position = EyePos + EyeRot.Forward * FLASHLIGHT_DISTANCE;
+                    _worldFlashlight.Rotation = EyeRotation;
+                    _worldFlashlight.Position = EyePosition + EyeRotation.Forward * FLASHLIGHT_DISTANCE;
                     _worldFlashlight.SetParent(this);
                     _worldFlashlight.TurnOn();
                 }
@@ -121,7 +121,7 @@ partial class SandboxPlayer
             if (IsFlashlightOn)
             {
                 _worldFlashlight.Rotation = Rotation.Slerp(_worldFlashlight.Rotation, Input.Rotation, SMOOTH_SPEED);
-                _worldFlashlight.Position = Vector3.Lerp(_worldFlashlight.Position, EyePos + Input.Rotation.Forward * FLASHLIGHT_DISTANCE, SMOOTH_SPEED);
+                _worldFlashlight.Position = Vector3.Lerp(_worldFlashlight.Position, EyePosition + Input.Rotation.Forward * FLASHLIGHT_DISTANCE, SMOOTH_SPEED);
             }
         }
     }
@@ -133,7 +133,7 @@ partial class SandboxPlayer
         if (IsFlashlightOn)
         {
             _viewFlashlight.Rotation = Input.Rotation;
-            _viewFlashlight.Position = EyePos + Input.Rotation.Forward * FLASHLIGHT_DISTANCE;
+            _viewFlashlight.Position = EyePosition + Input.Rotation.Forward * FLASHLIGHT_DISTANCE;
         }
     }
 }

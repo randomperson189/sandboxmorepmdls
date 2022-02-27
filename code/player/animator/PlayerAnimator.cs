@@ -12,6 +12,7 @@ public class PlayerAnimator : PawnAnimator
 
 	public override void Simulate()
 	{
+		var player = Pawn as Player;
 		var idealRotation = Rotation.LookAt( Input.Rotation.Forward.WithZ( 0 ), Vector3.Up );
 
 		DoRotation( idealRotation );
@@ -20,10 +21,10 @@ public class PlayerAnimator : PawnAnimator
 		//
 		// Let the animation graph know some shit
 		//
-		
-		SetParam( "b_grounded", GroundEntity != null );
-		SetParam( "b_sit", HasTag( "sitting" ) );
-		SetParam( "b_swim", Pawn.WaterLevel.Fraction > 0.5f && !HasTag( "sitting" ) );
+
+		SetAnimParameter( "b_grounded", GroundEntity != null );
+		SetAnimParameter( "b_sit", HasTag( "sitting" ) );
+		SetAnimParameter( "b_swim", Pawn.WaterLevel > 0.5f && !HasTag( "sitting" ) );
 		
 		//local vec = (position - bot:GetPos() ):GetNormal():Angle().y
 		//local myAngle = bot:EyeAngles().y
@@ -41,15 +42,15 @@ public class PlayerAnimator : PawnAnimator
 		//Log.Info( modelRotation + " : " + lookRotation + " :: " + rotationDifference );
 		//Log.Info( Input.Rotation.Pitch() );
 
-		SetParam( "aim_pitch", Input.Rotation.Pitch() );
-		SetParam( "aim_yaw", rotationDifference );
+		SetAnimParameter( "aim_pitch", Input.Rotation.Pitch() );
+		SetAnimParameter( "aim_yaw", rotationDifference );
 
-		SetParam( "b_crouch", HasTag( "ducked" ) );
+		SetAnimParameter( "b_crouch", HasTag( "ducked" ) );
 		
-		if ( Pawn.ActiveChild is BaseCarriable carry )
+		if ( player != null && player.ActiveChild is BaseCarriable carry )
 				carry.SimulateAnimator( this );
 			else
-				SetParam( "holdtype", 10 );
+				SetAnimParameter( "holdtype", 10 );
 	}
 
 	public virtual void DoRotation( Rotation idealRotation )
@@ -85,9 +86,9 @@ public class PlayerAnimator : PawnAnimator
 
 		var angle = MathF.Atan2( sideward, forward ).RadianToDegree().NormalizeDegrees();
 
-		SetParam( "move_direction", angle );
+		SetAnimParameter( "move_direction", angle );
 		//SetParam( "move_speed", Velocity.Length );
-		SetParam( "move_groundspeed", Velocity.WithZ( 0 ).Length );
+		SetAnimParameter( "move_groundspeed", Velocity.WithZ( 0 ).Length );
 		//SetParam( "move_y", sideward );
 		//SetParam( "move_x", forward );
 		//SetParam( "move_z", Velocity.z );
