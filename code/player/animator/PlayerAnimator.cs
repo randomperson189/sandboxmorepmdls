@@ -1,4 +1,5 @@
 ﻿using Sandbox;
+using Sandbox.HoldTypes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -50,7 +51,7 @@ public class PlayerAnimator : PawnAnimator
 		if ( player != null && player.ActiveChild is BaseCarriable carry )
 				carry.SimulateAnimator( this );
 			else
-				SetAnimParameter( "holdtype", 10 );
+				SetAnimParameter( "holdtype", (int)HoldType.Normal );
 	}
 
 	public virtual void DoRotation( Rotation idealRotation )
