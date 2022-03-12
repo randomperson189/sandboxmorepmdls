@@ -1,5 +1,5 @@
 ﻿using Sandbox;
-
+using Sandbox.HoldTypes;
 
 [Library( "weapon_pistol", Title = "Pistol", Spawnable = true )]
 [Hammer.EditorModel( "weapons/rust_pistol/rust_pistol.vmdl" )]
@@ -23,7 +23,7 @@ partial class Pistol : Weapon
 
 	public override void SimulateAnimator( PawnAnimator anim )
 	{
-		anim.SetAnimParameter( "holdtype", 0 );
+		anim.SetAnimParameter( "holdtype", (int)HoldType.Pistol );
 	}
 
 	public override bool CanPrimaryAttack()

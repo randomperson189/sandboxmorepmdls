@@ -1,4 +1,5 @@
 ﻿using Sandbox;
+using Sandbox.HoldTypes;
 
 [Library( "weapon_fists", Title = "Fists", Spawnable = false )]
 partial class Fists : Weapon
@@ -48,7 +49,7 @@ partial class Fists : Weapon
 
 	public override void SimulateAnimator( PawnAnimator anim )
 	{
-		anim.SetAnimParameter( "holdtype", 11 );
+		anim.SetAnimParameter( "holdtype", (int)HoldType.Fist );
 	}
 
 	private bool MeleeAttack()

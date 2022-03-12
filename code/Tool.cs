@@ -1,5 +1,6 @@
 ﻿using Sandbox;
 using Sandbox.Tools;
+using Sandbox.HoldTypes;
 
 [Library( "weapon_tool", Title = "Toolgun" )]
 partial class Tool : Weapon
@@ -91,7 +92,7 @@ partial class Tool : Weapon
 
 	public override void SimulateAnimator( PawnAnimator anim )
 	{
-		anim.SetAnimParameter( "holdtype", 0 );
+		anim.SetAnimParameter( "holdtype", (int)HoldType.Pistol );
 	}
 }
 

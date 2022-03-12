@@ -1,4 +1,5 @@
 ﻿using Sandbox;
+using Sandbox.HoldTypes;
 
 [Library( "weapon_crossbow", Title = "Crossbow", Spawnable = true )]
 [Hammer.EditorModel( "weapons/rust_crossbow/rust_crossbow.vmdl" )]
@@ -85,6 +86,6 @@ partial class Crossbow : Weapon
 
 	public override void SimulateAnimator( PawnAnimator anim )
 	{
-		anim.SetAnimParameter( "holdtype", 7 );
+		anim.SetAnimParameter( "holdtype", (int)HoldType.Crossbow );
 	}
 }

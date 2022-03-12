@@ -1,5 +1,6 @@
-﻿using Sandbox;
-using System;
+﻿using System;
+using Sandbox;
+using Sandbox.HoldTypes;
 
 [Library( "weapon_smg", Title = "SMG", Spawnable = true )]
 [Hammer.EditorModel( "weapons/rust_smg/rust_smg.vmdl" )]
@@ -71,6 +72,6 @@ partial class SMG : Weapon
 
 	public override void SimulateAnimator( PawnAnimator anim )
 	{
-		anim.SetAnimParameter( "holdtype", 1 );
+		anim.SetAnimParameter( "holdtype", (int)HoldType.SMG );
 	}
 }

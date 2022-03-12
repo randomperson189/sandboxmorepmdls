@@ -1,9 +1,10 @@
 ﻿using Sandbox;
 using System;
 using System.Linq;
+using Sandbox.HoldTypes;
 
-[Library( "gravgun" )]
-public partial class GravGun : Carriable
+[Library( "physcannon", Title = "Gravity Gun", Spawnable = true )]
+public partial class GravGun : Weapon
 {
 	public override string ViewModelPath => "weapons/rust_pistol/v_rust_pistol.vmdl";
 
@@ -38,6 +39,11 @@ public partial class GravGun : Carriable
 
 		CollisionGroup = CollisionGroup.Weapon;
 		SetInteractsAs( CollisionLayer.Debris );
+	}
+
+	public override void SimulateAnimator( PawnAnimator anim )
+	{
+		anim.SetAnimParameter( "holdtype", (int)HoldType.Physgun );
 	}
 
 	public override void Simulate( Client client )

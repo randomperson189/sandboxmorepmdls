@@ -1,5 +1,5 @@
 ﻿using Sandbox;
-
+using Sandbox.HoldTypes;
 
 [Library( "weapon_shotgun", Title = "Shotgun", Spawnable = true )]
 [Hammer.EditorModel( "weapons/rust_pumpshotgun/rust_pumpshotgun.vmdl" )]
@@ -143,6 +143,6 @@ partial class Shotgun : Weapon
 
 	public override void SimulateAnimator( PawnAnimator anim )
 	{
-		anim.SetAnimParameter( "holdtype", 4 );
+		anim.SetAnimParameter( "holdtype", (int)HoldType.Shotgun );
 	}
 }
