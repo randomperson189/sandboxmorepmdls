@@ -1,4 +1,6 @@
 ﻿using Sandbox;
+using System.Linq;
+using System.Threading.Tasks;
 
 partial class SandboxGame : Game
 {
@@ -28,7 +30,7 @@ partial class SandboxGame : Game
 	}
 
 	[ServerCmd( "spawn" )]
-	public static void Spawn( string modelname )
+	public static async Task Spawn( string modelname )
 	{
 		var owner = ConsoleSystem.Caller?.Pawn;
 
@@ -40,11 +42,58 @@ partial class SandboxGame : Game
 			.Ignore( owner )
 			.Run();
 
-		var ent = new Prop();
-		ent.Position = tr.EndPosition;
-		ent.Rotation = Rotation.From( new Angles( 0, owner.EyeRotation.Angles().yaw, 0 ) ) * Rotation.FromAxis( Vector3.Up, 180 );
-		ent.SetModel( modelname );
-		ent.Position = tr.EndPosition - Vector3.Up * ent.CollisionBounds.Mins.z;
+		var modelRotation = Rotation.From( new Angles( 0, owner.EyeRotation.Angles().yaw, 0 ) ) * Rotation.FromAxis( Vector3.Up, 180 );
+
+		//
+		// Does this look like a package?
+		//
+		if ( modelname.Count( x => x == '.' ) == 1 && !modelname.EndsWith( ".vmdl", System.StringComparison.OrdinalIgnoreCase ) && !modelname.EndsWith( ".vmdl_c", System.StringComparison.OrdinalIgnoreCase ) )
+		{
+			modelname = await SpawnPackageModel( modelname, tr.EndPosition, modelRotation, owner );
+			if ( modelname == null )
+				return;
+		}
+
+		var model = Model.Load( modelname );
+		if ( model == null || model.IsError )
+			return;
+
+		var ent = new Prop
+		{
+			Position = tr.EndPosition + Vector3.Down * model.PhysicsBounds.Mins.z,
+			Rotation = modelRotation,
+			Model = model
+		};
+
+		// Let's make sure physics are ready to go instead of waiting
+		ent.SetupPhysicsFromModel( PhysicsMotionType.Dynamic );
+
+		// If there's no physics model, create a simple OBB
+		if ( !ent.PhysicsBody.IsValid() )
+		{
+			ent.SetupPhysicsFromOBB( PhysicsMotionType.Dynamic, ent.CollisionBounds.Mins, ent.CollisionBounds.Maxs );
+		}
+	}
+
+	static async Task<string> SpawnPackageModel( string packageName, Vector3 pos, Rotation rotation, Entity source )
+	{
+		var package = await Package.Fetch( packageName, false );
+		if ( package == null || package.PackageType != Package.Type.Model || package.Revision == null )
+		{
+			// spawn error particles
+			return null;
+		}
+
+		if ( !source.IsValid ) return null; // source entity died or disconnected or something
+
+		var model = package.GetMeta( "PrimaryAsset", "models/dev/error.vmdl" );
+		var mins = package.GetMeta( "RenderMins", Vector3.Zero );
+		var maxs = package.GetMeta( "RenderMaxs", Vector3.Zero );
+
+		// downloads if not downloads, mounts if not mounted
+		await package.MountAsync();
+
+		return model;
 	}
 
 	[ServerCmd( "spawn_entity" )]
