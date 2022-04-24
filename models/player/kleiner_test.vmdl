@@ -1,0 +1,1250 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc29:version{3cec427c-1b0e-4d48-a90a-0436f33a6041} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "MaterialGroupList"
+				children = 
+				[
+					{
+						_class = "DefaultMaterialGroup"
+						remaps = 
+						[
+							{
+								from = "walter_face.vmat"
+								to = "materials/models/kleiner/walter_face.vmat"
+							},
+							{
+								from = "players_sheet.vmat"
+								to = "materials/models/kleiner/kleiner_sheet.vmat"
+							},
+							{
+								from = "mouth.vmat"
+								to = "materials/models/kleiner/mouth.vmat"
+							},
+							{
+								from = "glassesside_walter.vmat"
+								to = "materials/models/kleiner/glassesside_walter.vmat"
+							},
+							{
+								from = "glassesfront_walter.vmat"
+								to = "materials/models/kleiner/glassesfront_walter.vmat"
+							},
+							{
+								from = "glass2.vmat"
+								to = "materials/models/kleiner/glass2.vmat"
+							},
+							{
+								from = "eyeball_r.vmat"
+								to = "materials/models/kleiner/eyeball_r.vmat"
+							},
+							{
+								from = "eyeball_l.vmat"
+								to = "materials/models/kleiner/eyeball_l.vmat"
+							},
+						]
+						use_global_default = false
+						global_default_material = ""
+					},
+				]
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						filename = "models/work/kelneier/kleiner_reference.smd"
+						import_translation = [ 0.0, 0.0, 0.0 ]
+						import_rotation = [ 0.0, 0.0, 0.0 ]
+						import_scale = 1.0
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						parent_bone = ""
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = [  ]
+						}
+					},
+					{
+						_class = "RenderMeshFile"
+						filename = "models/work/kelneier/kleiner_reference_lod1.smd"
+						import_translation = [ 0.0, 0.0, 0.0 ]
+						import_rotation = [ 0.0, 0.0, 0.0 ]
+						import_scale = 1.0
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						parent_bone = ""
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = [  ]
+						}
+					},
+					{
+						_class = "RenderMeshFile"
+						filename = "models/work/kelneier/kleiner_reference_lod2.smd"
+						import_translation = [ 0.0, 0.0, 0.0 ]
+						import_rotation = [ 0.0, 0.0, 0.0 ]
+						import_scale = 1.0
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						parent_bone = ""
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = [  ]
+						}
+					},
+					{
+						_class = "RenderMeshFile"
+						filename = "models/work/kelneier/kleiner_reference_lod3.smd"
+						import_translation = [ 0.0, 0.0, 0.0 ]
+						import_rotation = [ 0.0, 0.0, 0.0 ]
+						import_scale = 1.0
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						parent_bone = ""
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = [  ]
+						}
+					},
+					{
+						_class = "RenderMeshFile"
+						filename = "models/work/kelneier/kleiner_reference_lod4.smd"
+						import_translation = [ 0.0, 0.0, 0.0 ]
+						import_rotation = [ 0.0, 0.0, 0.0 ]
+						import_scale = 1.0
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						parent_bone = ""
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = [  ]
+						}
+					},
+				]
+			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "AnimFile"
+						name = "reference"
+						activity_name = ""
+						activity_weight = 1
+						weight_list_name = ""
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						anim_markup_ordered = false
+						disable_compression = false
+						source_filename = "models/work/m_anm/m_anm_anims/reference.smd"
+						start_frame = -1
+						end_frame = -1
+						framerate = -1.0
+						take = 0
+						reverse = false
+					},
+				]
+				default_root_bone_name = ""
+			},
+			{
+				_class = "IKData"
+				children = 
+				[
+					{
+						_class = "IKChain"
+						name = "left_leg_IK"
+						children = 
+						[
+							{
+								_class = "IKChainJoint"
+								name = "bip01_l_thigh"
+								children = 
+								[
+									{
+										_class = "IKChainJoint"
+										name = "bip01_l_calf"
+										children = 
+										[
+											{
+												_class = "IKChainJoint"
+												name = "bip01_l_foot"
+												children = 
+												[
+													{
+														_class = "IKJointConstraint_Hinge"
+														constrained_joint = ""
+														hinge_axis = "Down"
+														min_radians = -2.094395
+														max_radians = 0.0
+													},
+												]
+												bone = "bip01_l_foot"
+											},
+										]
+										bone = "bip01_l_calf"
+									},
+								]
+								bone = "bip01_l_thigh"
+							},
+						]
+						m_bDoBonesOrientAlongPositiveX = true
+						"m_DefaultSolverSettings.m_nNumIterations" = 6
+						"m_DefaultSolverSettings.m_SolverType " = "IKSOLVER_TwoBone"
+						"m_DefaultTargetSettings.m_Bone" = 
+						{
+							m_Name = "bip01_l_foot"
+						}
+						"m_DefaultTargetSettings.m_TargetSource" = "Bone"
+						"m_Data.m_DefaultTargetSettings.m_AnimgraphParameterNamePosition" = 
+						{
+							m_id = 4294967295
+						}
+						"m_Data.m_EndEffectorFixedOffsetAttachment" = 
+						{
+							m_Name = ""
+						}
+						"m_Data.m_bParentJointRequiresAlignment" = true
+					},
+					{
+						_class = "IKChain"
+						name = "right_leg_IK"
+						children = 
+						[
+							{
+								_class = "IKChainJoint"
+								name = "bip01_r_thigh"
+								children = 
+								[
+									{
+										_class = "IKChainJoint"
+										name = "bip01_r_calf"
+										children = 
+										[
+											{
+												_class = "IKChainJoint"
+												name = "bip01_r_foot"
+												children = 
+												[
+													{
+														_class = "IKJointConstraint_Hinge"
+														constrained_joint = ""
+														hinge_axis = "Down"
+														min_radians = -2.094395
+														max_radians = 0.0
+													},
+												]
+												bone = "bip01_r_foot"
+											},
+										]
+										bone = "bip01_r_calf"
+									},
+								]
+								bone = "bip01_r_thigh"
+							},
+						]
+						m_bDoBonesOrientAlongPositiveX = true
+						"m_DefaultSolverSettings.m_nNumIterations" = 6
+						"m_DefaultSolverSettings.m_SolverType " = "IKSOLVER_TwoBone"
+						"m_DefaultTargetSettings.m_Bone" = 
+						{
+							m_Name = "bip01_r_foot"
+						}
+						"m_DefaultTargetSettings.m_TargetSource" = "Bone"
+						"m_Data.m_DefaultTargetSettings.m_AnimgraphParameterNamePosition" = 
+						{
+							m_id = 4294967295
+						}
+						"m_Data.m_EndEffectorFixedOffsetAttachment" = 
+						{
+							m_Name = ""
+						}
+						"m_Data.m_bParentJointRequiresAlignment" = true
+					},
+				]
+			},
+			{
+				_class = "WeightListList"
+				children = 
+				[
+					{
+						_class = "WeightList"
+						name = "weights_idle_layer_alt"
+						default_weight = 0.0
+						weights = 
+						[
+							{
+								bone = "bip01_pelvis"
+								weight = 0.25
+							},
+							{
+								bone = "bip01_r_thigh"
+								weight = 0.25
+							},
+						]
+						master_morph_weight = -1.0
+						morph_weights = [  ]
+					},
+					{
+						_class = "WeightList"
+						name = "weights_reload_ar2_base_layer"
+						default_weight = 0.0
+						weights = 
+						[
+							{
+								bone = "bip01_l_pectoral"
+								weight = 1.0
+							},
+							{
+								bone = "bip01_l_thigh"
+								weight = 0.0
+							},
+							{
+								bone = "bip01_pelvis"
+								weight = 0.0
+							},
+							{
+								bone = "bip01_r_thigh"
+								weight = 0.0
+							},
+							{
+								bone = "bip01_spine"
+								weight = 0.203125
+							},
+							{
+								bone = "bip01_spine1"
+								weight = 0.6
+							},
+							{
+								bone = "bip01_spine2"
+								weight = 0.896875
+							},
+							{
+								bone = "bip01_spine4"
+								weight = 1.0
+							},
+						]
+						master_morph_weight = -1.0
+						morph_weights = [  ]
+					},
+				]
+			},
+			{
+				_class = "PhysicsJointList"
+				children = 
+				[
+					{
+						_class = "Folder"
+						name = "Body"
+						children = 
+						[
+							{
+								_class = "PhysicsJointConical"
+								parent_body = "bip01_pelvis"
+								child_body = "bip01_spine2"
+								anchor_origin = [ 0.0, 7.3485, -3.32823 ]
+								anchor_angles = [ -90.0, 0.0, -90.0 ]
+								collision_enabled = false
+								friction = 0.0
+								enable_swing_limit = true
+								swing_limit = 25.0
+								swing_offset_angle = [ 0.0, 0.0, 0.0 ]
+								enable_twist_limit = true
+								min_twist_angle = -25.0
+								max_twist_angle = 25.0
+							},
+							{
+								_class = "PhysicsJointConical"
+								parent_body = "bip01_spine2"
+								child_body = "bip01_head1"
+								anchor_origin = [ 15.2033, 2.42015, 0.0 ]
+								anchor_angles = [ 0.0, 90.0, 90.0 ]
+								collision_enabled = false
+								friction = 0.0
+								enable_swing_limit = true
+								swing_limit = 25.0
+								swing_offset_angle = [ 0.0, 0.0, 0.0 ]
+								enable_twist_limit = true
+								min_twist_angle = -25.0
+								max_twist_angle = 25.0
+							},
+						]
+					},
+					{
+						_class = "Folder"
+						name = "Legs"
+						children = 
+						[
+							{
+								_class = "PhysicsJointConical"
+								parent_body = "bip01_pelvis"
+								child_body = "bip01_l_thigh"
+								anchor_origin = [ 3.89045, 0.0, 0.0 ]
+								anchor_angles = [ -90.0, 0.0, 90.0 ]
+								collision_enabled = false
+								friction = 0.0
+								enable_swing_limit = true
+								swing_limit = 35.0
+								swing_offset_angle = [ 0.0, 0.0, 0.0 ]
+								enable_twist_limit = true
+								min_twist_angle = -25.0
+								max_twist_angle = 25.0
+							},
+							{
+								_class = "PhysicsJointConical"
+								disabled = true
+								parent_body = "bip01_l_thigh"
+								child_body = "bip01_l_calf"
+								anchor_origin = [ 17.8239, 0.92492, 0.093126 ]
+								anchor_angles = [ 0.0, -90.0, -90.0 ]
+								collision_enabled = false
+								friction = 0.0
+								enable_swing_limit = true
+								swing_limit = 45.0
+								swing_offset_angle = [ -45.0, 0.0, 0.0 ]
+								enable_twist_limit = true
+								min_twist_angle = -0.1
+								max_twist_angle = 0.1
+							},
+							{
+								_class = "PhysicsJointRevolute"
+								parent_body = "bip01_l_thigh"
+								child_body = "bip01_l_calf"
+								anchor_origin = [ 17.8239, 0.92492, 0.093126 ]
+								anchor_angles = [ 0.0, 0.0, 0.0 ]
+								collision_enabled = false
+								friction = 0.0
+								enable_limit = true
+								min_angle = -12.0
+								max_angle = 126.0
+							},
+							{
+								_class = "PhysicsJointConical"
+								parent_body = "bip01_l_calf"
+								child_body = "bip01_l_foot"
+								anchor_origin = [ 16.4639, 1.41994, 0.08602 ]
+								anchor_angles = [ 180.0, 0.0, 90.0 ]
+								collision_enabled = false
+								friction = 0.0
+								enable_swing_limit = true
+								swing_limit = 10.0
+								swing_offset_angle = [ 0.0, 0.0, 0.0 ]
+								enable_twist_limit = true
+								min_twist_angle = -0.1
+								max_twist_angle = 0.1
+							},
+							{
+								_class = "PhysicsJointConical"
+								parent_body = "bip01_pelvis"
+								child_body = "bip01_r_thigh"
+								anchor_origin = [ -3.89045, 0.0, 0.0 ]
+								anchor_angles = [ -90.0, 0.0, 90.0 ]
+								collision_enabled = false
+								friction = 0.0
+								enable_swing_limit = true
+								swing_limit = 35.0
+								swing_offset_angle = [ 0.0, 0.0, 0.0 ]
+								enable_twist_limit = true
+								min_twist_angle = -25.0
+								max_twist_angle = 25.0
+							},
+							{
+								_class = "PhysicsJointConical"
+								disabled = true
+								parent_body = "bip01_r_thigh"
+								child_body = "bip01_r_calf"
+								anchor_origin = [ 17.8239, 0.92492, -0.093126 ]
+								anchor_angles = [ 0.0, -90.0, -90.0 ]
+								collision_enabled = false
+								friction = 0.0
+								enable_swing_limit = true
+								swing_limit = 45.0
+								swing_offset_angle = [ -45.0, 0.0, 0.0 ]
+								enable_twist_limit = true
+								min_twist_angle = -0.1
+								max_twist_angle = 0.1
+							},
+							{
+								_class = "PhysicsJointRevolute"
+								parent_body = "bip01_r_thigh"
+								child_body = "bip01_r_calf"
+								anchor_origin = [ 17.8239, 0.92492, -0.093126 ]
+								anchor_angles = [ 0.0, 0.0, 0.0 ]
+								collision_enabled = false
+								friction = 0.0
+								enable_limit = true
+								min_angle = -12.0
+								max_angle = 126.0
+							},
+							{
+								_class = "PhysicsJointConical"
+								parent_body = "bip01_r_calf"
+								child_body = "bip01_r_foot"
+								anchor_origin = [ 16.4639, 1.41994, -0.08602 ]
+								anchor_angles = [ 180.0, 0.0, 90.0 ]
+								collision_enabled = false
+								friction = 0.0
+								enable_swing_limit = true
+								swing_limit = 10.0
+								swing_offset_angle = [ 0.0, 0.0, 0.0 ]
+								enable_twist_limit = true
+								min_twist_angle = -0.1
+								max_twist_angle = 0.1
+							},
+						]
+					},
+					{
+						_class = "Folder"
+						name = "Arms"
+						children = 
+						[
+							{
+								_class = "PhysicsJointConical"
+								parent_body = "bip01_spine2"
+								child_body = "bip01_r_upperarm"
+								anchor_origin = [ 9.07407, 1.24408, -7.72381 ]
+								anchor_angles = [ 0.0, 90.0, -130.0 ]
+								collision_enabled = false
+								friction = 0.0
+								enable_swing_limit = true
+								swing_limit = 45.0
+								swing_offset_angle = [ 0.0, 0.0, 0.0 ]
+								enable_twist_limit = true
+								min_twist_angle = -45.0
+								max_twist_angle = 45.0
+							},
+							{
+								_class = "PhysicsJointRevolute"
+								parent_body = "bip01_r_upperarm"
+								child_body = "bip01_r_forearm"
+								anchor_origin = [ 11.75, 0.0, 0.0 ]
+								anchor_angles = [ 0.0, -90.0, 0.0 ]
+								collision_enabled = false
+								friction = 0.0
+								enable_limit = true
+								min_angle = -149.0
+								max_angle = 4.0
+							},
+							{
+								_class = "PhysicsJointConical"
+								parent_body = "bip01_r_forearm"
+								child_body = "bip01_r_hand"
+								anchor_origin = [ 11.5, 0.0, 0.0 ]
+								anchor_angles = [ 0.0, -90.0, -80.0 ]
+								collision_enabled = false
+								friction = 0.0
+								enable_swing_limit = true
+								swing_limit = 40.0
+								swing_offset_angle = [ 0.0, 0.0, 0.0 ]
+								enable_twist_limit = true
+								min_twist_angle = -45.0
+								max_twist_angle = 45.0
+							},
+							{
+								_class = "PhysicsJointConical"
+								parent_body = "bip01_spine2"
+								child_body = "bip01_l_upperarm"
+								anchor_origin = [ 9.07407, 1.24408, 7.72381 ]
+								anchor_angles = [ 0.0, 90.0, -40.0 ]
+								collision_enabled = false
+								friction = 0.0
+								enable_swing_limit = true
+								swing_limit = 45.0
+								swing_offset_angle = [ 0.0, 0.0, 0.0 ]
+								enable_twist_limit = true
+								min_twist_angle = -45.0
+								max_twist_angle = 45.0
+							},
+							{
+								_class = "PhysicsJointRevolute"
+								parent_body = "bip01_l_upperarm"
+								child_body = "bip01_l_forearm"
+								anchor_origin = [ 11.75, 0.0, 0.0 ]
+								anchor_angles = [ 0.0, -90.0, 0.0 ]
+								collision_enabled = false
+								friction = 0.0
+								enable_limit = true
+								min_angle = -149.0
+								max_angle = 4.0
+							},
+							{
+								_class = "PhysicsJointConical"
+								parent_body = "bip01_l_forearm"
+								child_body = "bip01_l_hand"
+								anchor_origin = [ 11.5, 0.0, 0.0 ]
+								anchor_angles = [ 0.0, -90.0, -80.0 ]
+								collision_enabled = false
+								friction = 0.0
+								enable_swing_limit = true
+								swing_limit = 40.0
+								swing_offset_angle = [ 0.0, 0.0, 0.0 ]
+								enable_twist_limit = true
+								min_twist_angle = -45.0
+								max_twist_angle = 45.0
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "PhysicsShapeList"
+				children = 
+				[
+					{
+						_class = "PhysicsHullFile"
+						name = "pelvis"
+						parent_bone = "bip01_pelvis"
+						surface_prop = "default"
+						collision_group = "Default"
+						collision_interact_as = ""
+						collision_interact_with = ""
+						collision_interact_exclude = ""
+						recenter_on_parent_bone = false
+						offset_origin = [ 0.0, 0.0, 0.0 ]
+						offset_angles = [ 0.0, 0.0, 0.0 ]
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						filename = "models/work/kleiner_physics/kleiner_physics.001.smd"
+						import_scale = 1.0
+						faceMergeAngle = 10.0
+						maxHullVertices = 0
+						import_mode = "SingleHull"
+						optimization_algorithm = "QEM"
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = [  ]
+						}
+					},
+					{
+						_class = "PhysicsHullFile"
+						name = "spine2"
+						parent_bone = "bip01_spine2"
+						surface_prop = "default"
+						collision_group = "Default"
+						collision_interact_as = ""
+						collision_interact_with = ""
+						collision_interact_exclude = ""
+						recenter_on_parent_bone = false
+						offset_origin = [ 0.0, 0.0, 0.0 ]
+						offset_angles = [ 0.0, 0.0, 0.0 ]
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						filename = "models/work/kleiner_physics/kleiner_physics.002.smd"
+						import_scale = 1.0
+						faceMergeAngle = 10.0
+						maxHullVertices = 0
+						import_mode = "SingleHull"
+						optimization_algorithm = "QEM"
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = [  ]
+						}
+					},
+					{
+						_class = "PhysicsHullFile"
+						name = "upperarm_l"
+						parent_bone = "bip01_l_upperarm"
+						surface_prop = "default"
+						collision_group = "Default"
+						collision_interact_as = ""
+						collision_interact_with = ""
+						collision_interact_exclude = ""
+						recenter_on_parent_bone = false
+						offset_origin = [ 0.0, 0.0, 0.0 ]
+						offset_angles = [ 0.0, 0.0, 0.0 ]
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						filename = "models/work/kleiner_physics/kleiner_physics.003.smd"
+						import_scale = 1.0
+						faceMergeAngle = 10.0
+						maxHullVertices = 0
+						import_mode = "SingleHull"
+						optimization_algorithm = "QEM"
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = [  ]
+						}
+					},
+					{
+						_class = "PhysicsHullFile"
+						name = "forearm_l"
+						parent_bone = "bip01_l_forearm"
+						surface_prop = "default"
+						collision_group = "Default"
+						collision_interact_as = ""
+						collision_interact_with = ""
+						collision_interact_exclude = ""
+						recenter_on_parent_bone = false
+						offset_origin = [ 0.0, 0.0, 0.0 ]
+						offset_angles = [ 0.0, 0.0, 0.0 ]
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						filename = "models/work/kleiner_physics/kleiner_physics.004.smd"
+						import_scale = 1.0
+						faceMergeAngle = 10.0
+						maxHullVertices = 0
+						import_mode = "SingleHull"
+						optimization_algorithm = "QEM"
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = [  ]
+						}
+					},
+					{
+						_class = "PhysicsHullFile"
+						name = "hand_l"
+						parent_bone = "bip01_l_hand"
+						surface_prop = "default"
+						collision_group = "Default"
+						collision_interact_as = ""
+						collision_interact_with = ""
+						collision_interact_exclude = ""
+						recenter_on_parent_bone = false
+						offset_origin = [ 0.0, 0.0, 0.0 ]
+						offset_angles = [ 0.0, 0.0, 0.0 ]
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						filename = "models/work/kleiner_physics/kleiner_physics.005.smd"
+						import_scale = 1.0
+						faceMergeAngle = 10.0
+						maxHullVertices = 0
+						import_mode = "SingleHull"
+						optimization_algorithm = "QEM"
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = [  ]
+						}
+					},
+					{
+						_class = "PhysicsHullFile"
+						name = "hand_r"
+						parent_bone = "bip01_r_hand"
+						surface_prop = "default"
+						collision_group = "Default"
+						collision_interact_as = ""
+						collision_interact_with = ""
+						collision_interact_exclude = ""
+						recenter_on_parent_bone = false
+						offset_origin = [ 0.0, 0.0, 0.0 ]
+						offset_angles = [ 0.0, 0.0, 0.0 ]
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						filename = "models/work/kleiner_physics/kleiner_physics.006.smd"
+						import_scale = 1.0
+						faceMergeAngle = 10.0
+						maxHullVertices = 0
+						import_mode = "SingleHull"
+						optimization_algorithm = "QEM"
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = [  ]
+						}
+					},
+					{
+						_class = "PhysicsHullFile"
+						name = "upperarm_r"
+						parent_bone = "bip01_r_upperarm"
+						surface_prop = "default"
+						collision_group = "Default"
+						collision_interact_as = ""
+						collision_interact_with = ""
+						collision_interact_exclude = ""
+						recenter_on_parent_bone = false
+						offset_origin = [ 0.0, 0.0, 0.0 ]
+						offset_angles = [ 0.0, 0.0, 0.0 ]
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						filename = "models/work/kleiner_physics/kleiner_physics.007.smd"
+						import_scale = 1.0
+						faceMergeAngle = 10.0
+						maxHullVertices = 0
+						import_mode = "SingleHull"
+						optimization_algorithm = "QEM"
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = [  ]
+						}
+					},
+					{
+						_class = "PhysicsHullFile"
+						name = "forearm_r"
+						parent_bone = "bip01_r_forearm"
+						surface_prop = "default"
+						collision_group = "Default"
+						collision_interact_as = ""
+						collision_interact_with = ""
+						collision_interact_exclude = ""
+						recenter_on_parent_bone = false
+						offset_origin = [ 0.0, 0.0, 0.0 ]
+						offset_angles = [ 0.0, 0.0, 0.0 ]
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						filename = "models/work/kleiner_physics/kleiner_physics.008.smd"
+						import_scale = 1.0
+						faceMergeAngle = 10.0
+						maxHullVertices = 0
+						import_mode = "SingleHull"
+						optimization_algorithm = "QEM"
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = [  ]
+						}
+					},
+					{
+						_class = "PhysicsHullFile"
+						name = "head"
+						parent_bone = "bip01_head1"
+						surface_prop = "default"
+						collision_group = "Default"
+						collision_interact_as = ""
+						collision_interact_with = ""
+						collision_interact_exclude = ""
+						recenter_on_parent_bone = false
+						offset_origin = [ 0.0, 0.0, 0.0 ]
+						offset_angles = [ 0.0, 0.0, 0.0 ]
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						filename = "models/work/kleiner_physics/kleiner_physics.009.smd"
+						import_scale = 1.0
+						faceMergeAngle = 10.0
+						maxHullVertices = 0
+						import_mode = "SingleHull"
+						optimization_algorithm = "QEM"
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = [  ]
+						}
+					},
+					{
+						_class = "PhysicsHullFile"
+						name = "thigh_r"
+						parent_bone = "bip01_r_thigh"
+						surface_prop = "default"
+						collision_group = "Default"
+						collision_interact_as = ""
+						collision_interact_with = ""
+						collision_interact_exclude = ""
+						recenter_on_parent_bone = false
+						offset_origin = [ 0.0, 0.0, 0.0 ]
+						offset_angles = [ 0.0, 0.0, 0.0 ]
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						filename = "models/work/kleiner_physics/kleiner_physics.010.smd"
+						import_scale = 1.0
+						faceMergeAngle = 10.0
+						maxHullVertices = 0
+						import_mode = "SingleHull"
+						optimization_algorithm = "QEM"
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = [  ]
+						}
+					},
+					{
+						_class = "PhysicsHullFile"
+						name = "thigh_l"
+						parent_bone = "bip01_l_thigh"
+						surface_prop = "default"
+						collision_group = "Default"
+						collision_interact_as = ""
+						collision_interact_with = ""
+						collision_interact_exclude = ""
+						recenter_on_parent_bone = false
+						offset_origin = [ 0.0, 0.0, 0.0 ]
+						offset_angles = [ 0.0, 0.0, 0.0 ]
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						filename = "models/work/kleiner_physics/kleiner_physics.011.smd"
+						import_scale = 1.0
+						faceMergeAngle = 10.0
+						maxHullVertices = 0
+						import_mode = "SingleHull"
+						optimization_algorithm = "QEM"
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = [  ]
+						}
+					},
+					{
+						_class = "PhysicsHullFile"
+						name = "calf_r"
+						parent_bone = "bip01_r_calf"
+						surface_prop = "default"
+						collision_group = "Default"
+						collision_interact_as = ""
+						collision_interact_with = ""
+						collision_interact_exclude = ""
+						recenter_on_parent_bone = false
+						offset_origin = [ 0.0, 0.0, 0.0 ]
+						offset_angles = [ 0.0, 0.0, 0.0 ]
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						filename = "models/work/kleiner_physics/kleiner_physics.012.smd"
+						import_scale = 1.0
+						faceMergeAngle = 10.0
+						maxHullVertices = 0
+						import_mode = "SingleHull"
+						optimization_algorithm = "QEM"
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = [  ]
+						}
+					},
+					{
+						_class = "PhysicsHullFile"
+						name = "calf_l"
+						parent_bone = "bip01_l_calf"
+						surface_prop = "default"
+						collision_group = "Default"
+						collision_interact_as = ""
+						collision_interact_with = ""
+						collision_interact_exclude = ""
+						recenter_on_parent_bone = false
+						offset_origin = [ 0.0, 0.0, 0.0 ]
+						offset_angles = [ 0.0, 0.0, 0.0 ]
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						filename = "models/work/kleiner_physics/kleiner_physics.013.smd"
+						import_scale = 1.0
+						faceMergeAngle = 10.0
+						maxHullVertices = 0
+						import_mode = "SingleHull"
+						optimization_algorithm = "QEM"
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = [  ]
+						}
+					},
+					{
+						_class = "PhysicsHullFile"
+						name = "foot_r"
+						parent_bone = "bip01_r_foot"
+						surface_prop = "default"
+						collision_group = "Default"
+						collision_interact_as = ""
+						collision_interact_with = ""
+						collision_interact_exclude = ""
+						recenter_on_parent_bone = false
+						offset_origin = [ 0.0, 0.0, 0.0 ]
+						offset_angles = [ 0.0, 0.0, 0.0 ]
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						filename = "models/work/kleiner_physics/kleiner_physics.014.smd"
+						import_scale = 1.0
+						faceMergeAngle = 10.0
+						maxHullVertices = 0
+						import_mode = "SingleHull"
+						optimization_algorithm = "QEM"
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = [  ]
+						}
+					},
+					{
+						_class = "PhysicsHullFile"
+						name = "foot_l"
+						parent_bone = "bip01_l_foot"
+						surface_prop = "default"
+						collision_group = "Default"
+						collision_interact_as = ""
+						collision_interact_with = ""
+						collision_interact_exclude = ""
+						recenter_on_parent_bone = false
+						offset_origin = [ 0.0, 0.0, 0.0 ]
+						offset_angles = [ 0.0, 0.0, 0.0 ]
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						filename = "models/work/kleiner_physics/kleiner_physics.015.smd"
+						import_scale = 1.0
+						faceMergeAngle = 10.0
+						maxHullVertices = 0
+						import_mode = "SingleHull"
+						optimization_algorithm = "QEM"
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = [  ]
+						}
+					},
+				]
+			},
+			{
+				_class = "HitboxSetList"
+				children = 
+				[
+					{
+						_class = "HitboxSet"
+						name = "Hitboxes"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								parent_bone = "bip01_head1"
+								surface_property = "flesh"
+								translation_only = false
+								group_id = 1
+								hitbox_mins = [ -1.25, -6.5, -3.19 ]
+								hitbox_maxs = [ 8.25, 3.5, 3.31 ]
+							},
+							{
+								_class = "Hitbox"
+								parent_bone = "bip01_l_upperarm"
+								surface_property = "flesh"
+								translation_only = false
+								group_id = 4
+								hitbox_mins = [ 0.0, -2.75, -2.75 ]
+								hitbox_maxs = [ 12.51, 1.75, 2.25 ]
+							},
+							{
+								_class = "Hitbox"
+								parent_bone = "bip01_l_forearm"
+								surface_property = "flesh"
+								translation_only = false
+								group_id = 4
+								hitbox_mins = [ 0.0, -2.19, -2.38 ]
+								hitbox_maxs = [ 13.0, 1.81, 1.62 ]
+							},
+							{
+								_class = "Hitbox"
+								parent_bone = "bip01_l_hand"
+								surface_property = "flesh"
+								translation_only = false
+								group_id = 4
+								hitbox_mins = [ 0.06, -2.0, -1.5 ]
+								hitbox_maxs = [ 4.06, 1.0, 2.5 ]
+							},
+							{
+								_class = "Hitbox"
+								parent_bone = "bip01_r_upperarm"
+								surface_property = "flesh"
+								translation_only = false
+								group_id = 5
+								hitbox_mins = [ 0.0, -3.0, -2.25 ]
+								hitbox_maxs = [ 12.39, 2.0, 2.75 ]
+							},
+							{
+								_class = "Hitbox"
+								parent_bone = "bip01_r_forearm"
+								surface_property = "flesh"
+								translation_only = false
+								group_id = 5
+								hitbox_mins = [ -0.5, -2.2, -1.55 ]
+								hitbox_maxs = [ 12.5, 1.8, 2.45 ]
+							},
+							{
+								_class = "Hitbox"
+								parent_bone = "bip01_r_hand"
+								surface_property = "flesh"
+								translation_only = false
+								group_id = 5
+								hitbox_mins = [ 0.06, -2.0, -2.5 ]
+								hitbox_maxs = [ 4.06, 1.0, 1.5 ]
+							},
+							{
+								_class = "Hitbox"
+								parent_bone = "bip01_l_thigh"
+								surface_property = "flesh"
+								translation_only = false
+								group_id = 6
+								hitbox_mins = [ 0.0, -3.75, -3.25 ]
+								hitbox_maxs = [ 17.85, 3.75, 3.25 ]
+							},
+							{
+								_class = "Hitbox"
+								parent_bone = "bip01_l_calf"
+								surface_property = "flesh"
+								translation_only = false
+								group_id = 6
+								hitbox_mins = [ 0.0, -3.51, -3.28 ]
+								hitbox_maxs = [ 15.64, 3.49, 2.72 ]
+							},
+							{
+								_class = "Hitbox"
+								parent_bone = "bip01_l_foot"
+								surface_property = "flesh"
+								translation_only = false
+								group_id = 6
+								hitbox_mins = [ -1.07, -2.0, -2.84 ]
+								hitbox_maxs = [ 5.04, 5.0, 2.16 ]
+							},
+							{
+								_class = "Hitbox"
+								parent_bone = "bip01_l_toe0"
+								surface_property = "flesh"
+								translation_only = false
+								group_id = 6
+								hitbox_mins = [ -0.5, -3.0, -2.19 ]
+								hitbox_maxs = [ 2.5, 0.0, 2.46 ]
+							},
+							{
+								_class = "Hitbox"
+								parent_bone = "bip01_r_thigh"
+								surface_property = "flesh"
+								translation_only = false
+								group_id = 7
+								hitbox_mins = [ 0.0, -3.75, -3.25 ]
+								hitbox_maxs = [ 17.85, 3.75, 3.25 ]
+							},
+							{
+								_class = "Hitbox"
+								parent_bone = "bip01_r_calf"
+								surface_property = "flesh"
+								translation_only = false
+								group_id = 7
+								hitbox_mins = [ 0.0, -3.51, -2.82 ]
+								hitbox_maxs = [ 15.64, 3.49, 3.18 ]
+							},
+							{
+								_class = "Hitbox"
+								parent_bone = "bip01_r_foot"
+								surface_property = "flesh"
+								translation_only = false
+								group_id = 7
+								hitbox_mins = [ -1.06, -2.01, -2.28 ]
+								hitbox_maxs = [ 5.05, 4.99, 2.72 ]
+							},
+							{
+								_class = "Hitbox"
+								parent_bone = "bip01_r_toe0"
+								surface_property = "flesh"
+								translation_only = false
+								group_id = 7
+								hitbox_mins = [ -0.5, -3.0, -2.6 ]
+								hitbox_maxs = [ 2.5, 0.0, 2.1 ]
+							},
+							{
+								_class = "Hitbox"
+								parent_bone = "bip01_pelvis"
+								surface_property = "flesh"
+								translation_only = false
+								group_id = 2
+								hitbox_mins = [ -7.5, -5.5, -6.0 ]
+								hitbox_maxs = [ 7.5, 8.5, 5.0 ]
+							},
+							{
+								_class = "Hitbox"
+								parent_bone = "bip01_spine2"
+								surface_property = "flesh"
+								translation_only = false
+								group_id = 2
+								hitbox_mins = [ -2.5, -2.5, -7.0 ]
+								hitbox_maxs = [ 14.5, 7.5, 7.0 ]
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "LODGroupList"
+				children = 
+				[
+					{
+						_class = "LODGroup"
+						switch_threshold = 0.0
+						meshes = 
+						[
+							"unnamed_1",
+						]
+					},
+					{
+						_class = "LODGroup"
+						switch_threshold = 9.0
+						meshes = 
+						[
+							"unnamed_2",
+						]
+					},
+					{
+						_class = "LODGroup"
+						switch_threshold = 18.0
+						meshes = 
+						[
+							"unnamed_3",
+						]
+					},
+					{
+						_class = "LODGroup"
+						switch_threshold = 32.0
+						meshes = 
+						[
+							"unnamed_4",
+						]
+					},
+					{
+						_class = "LODGroup"
+						switch_threshold = 48.0
+						meshes = 
+						[
+							"unnamed_5",
+						]
+					},
+				]
+			},
+			{
+				_class = "AttachmentList"
+				children = 
+				[
+					{
+						_class = "Attachment"
+						name = "eyes"
+						parent_bone = "bip01_head1"
+						relative_origin = [ 3.57, -3.08, 0.0 ]
+						relative_angles = [ 0.0, -801.0, -90.0 ]
+						weight = 1.0
+						ignore_rotation = false
+					},
+				]
+			},
+		]
+		model_archetype = ""
+		primary_associated_entity = ""
+		anim_graph_name = "models/player/player_anims_shared.vanmgrph"
+	}
+}
