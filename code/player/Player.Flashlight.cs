@@ -138,7 +138,7 @@ partial class SandboxPlayer
     }
 }
 
-[Hammer.Skip]
+[HideInEditor]
 [Library("ent_flashlight")]
 public partial class Flashlight : SpotLightEntity
 {

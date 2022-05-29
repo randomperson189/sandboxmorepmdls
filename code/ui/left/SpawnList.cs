@@ -23,7 +23,7 @@ public partial class SpawnList : Panel
 			panel.AddEventListener( "onclick", () => ConsoleSystem.Run( "spawn", "models/" + file ) );
 			panel.Style.BackgroundImage = Texture.Load( FileSystem.Mounted, $"/models/{file}_c.png", false );
 		};
-		
+
 		foreach ( var file in FileSystem.Mounted.FindFile( "models", "*.vmdl_c.png", true ) )
 		{
 			if ( string.IsNullOrWhiteSpace( file ) ) continue;

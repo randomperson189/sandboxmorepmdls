@@ -37,7 +37,7 @@ partial class SandboxPlayer : Player
 
 	public override void Spawn()
 	{
-		CameraMode = new FirstPersonCamera();
+		CameraMode = new FirstPersonCamera2();
 		//LastCamera = CameraMode;
 
 		base.Spawn();
@@ -56,7 +56,7 @@ partial class SandboxPlayer : Player
 		Animator = new PlayerAnimator();
 
 		//CameraMode = LastCamera;
-		CameraMode = new FirstPersonCamera();
+		CameraMode = new FirstPersonCamera2();
 
 		if ( DevController is NoclipController )
 			DevController = null;
@@ -99,7 +99,7 @@ partial class SandboxPlayer : Player
 
 		BecomeRagdollOnClient( Velocity, lastDamage.Flags, lastDamage.Position, lastDamage.Force, GetHitboxBone( lastDamage.HitboxIndex ) );
 		//LastCamera = CameraMode;
-		CameraMode = new SpectateRagdollCamera();
+		CameraMode = new SpectateRagdollCamera2();
 		Controller = null;
 
 		EnableAllCollisions = false;
@@ -190,13 +190,13 @@ partial class SandboxPlayer : Player
 
 		if ( Input.Pressed( InputButton.View ) )
 		{
-			if ( CameraMode is not FirstPersonCamera )
+			if ( CameraMode is not FirstPersonCamera2 )
 			{
-				CameraMode = new FirstPersonCamera();
+				CameraMode = new FirstPersonCamera2();
 			}
 			else
 			{
-				CameraMode = new ThirdPersonCamera();
+				CameraMode = new ThirdPersonCamera2();
 			}
 		}
 
@@ -222,7 +222,7 @@ partial class SandboxPlayer : Player
 		base.StartTouch( other );
 	}
 
-	[ServerCmd( "inventory_current" )]
+	[ConCmd.Server( "inventory_current" )]
 	public static void SetInventoryCurrent( string entName )
 	{
 		var target = ConsoleSystem.Caller.Pawn as Player;
@@ -238,7 +238,7 @@ partial class SandboxPlayer : Player
 			if ( !slot.IsValid() )
 				continue;
 
-			if ( !slot.ClassInfo.IsNamed( entName ) )
+			if ( slot.ClassName != entName )
 				continue;
 
 			inventory.SetActiveSlot( i, false );

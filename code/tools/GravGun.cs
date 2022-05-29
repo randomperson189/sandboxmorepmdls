@@ -3,7 +3,8 @@ using System;
 using System.Linq;
 using Sandbox.HoldTypes;
 
-[Library( "physcannon", Title = "Gravity Gun", Spawnable = true )]
+[Spawnable]
+[Library( "physcannon", Title = "Gravity Gun" )]
 public partial class GravGun : Weapon
 {
 	public override string ViewModelPath => "weapons/rust_pistol/v_rust_pistol.vmdl";
@@ -65,7 +66,7 @@ public partial class GravGun : Weapon
 				{
 					GrabEnd();
 				}
-				else if ( Input.Pressed( InputButton.Attack1 ) )
+				else if ( Input.Pressed( InputButton.PrimaryAttack ) )
 				{
 					if ( HeldBody.PhysicsGroup.BodyCount > 1 )
 					{
@@ -81,7 +82,7 @@ public partial class GravGun : Weapon
 
 					GrabEnd();
 				}
-				else if ( Input.Pressed( InputButton.Attack2 ) )
+				else if ( Input.Pressed( InputButton.SecondaryAttack ) )
 				{
 					timeSinceDrop = 0;
 
@@ -117,7 +118,7 @@ public partial class GravGun : Weapon
 
 			var body = tr.Body;
 
-			if ( Input.Pressed( InputButton.Attack1 ) )
+			if ( Input.Pressed( InputButton.PrimaryAttack ) )
 			{
 				if ( tr.Distance < MaxPushDistance && !IsBodyGrabbed( body ) )
 				{
@@ -125,7 +126,7 @@ public partial class GravGun : Weapon
 					body.ApplyImpulseAt( tr.EndPosition, eyeDir * (body.Mass * (PushForce * pushScale)) );
 				}
 			}
-			else if ( Input.Down( InputButton.Attack2 ) )
+			else if ( Input.Down( InputButton.SecondaryAttack ) )
 			{
 				var physicsGroup = tr.Entity.PhysicsGroup;
 

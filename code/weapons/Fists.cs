@@ -1,7 +1,8 @@
 ﻿using Sandbox;
 using Sandbox.HoldTypes;
 
-[Library( "weapon_fists", Title = "Fists", Spawnable = false )]
+[Spawnable]
+[Library( "weapon_fists", Title = "Fists" )]
 partial class Fists : Weapon
 {
 	public override string ViewModelPath => "models/firstperson/temp_punch/temp_punch.vmdl";
@@ -30,7 +31,7 @@ partial class Fists : Weapon
 		Sound test = Sound.FromEntity( "slam_throw", this );
 			test.SetVolume( 0.5f );
 
-		(Owner as AnimEntity)?.SetAnimParameter( "b_attack", true );
+		(Owner as AnimatedEntity)?.SetAnimParameter( "b_attack", true );
 	}
 
 	public override void AttackPrimary()
@@ -88,10 +89,10 @@ partial class Fists : Weapon
 	{
 		Host.AssertClient();
 
-		if ( IsLocalPawn )
+		/*if ( IsLocalPawn )
 		{
 			_ = new Sandbox.ScreenShake.Perlin();
-		}
+		}*/
 
 		ViewModelEntity?.SetAnimParameter( "attack", true );
 		ViewModelEntity?.SetAnimParameter( "holdtype_attack", leftHand ? 2 : 1 );
@@ -102,10 +103,10 @@ partial class Fists : Weapon
 	{
 		Host.AssertClient();
 
-		if ( IsLocalPawn )
+		/*if ( IsLocalPawn )
 		{
 			_ = new Sandbox.ScreenShake.Perlin( 1.0f, 1.0f, 3.0f );
-		}
+		}*/
 
 		ViewModelEntity?.SetAnimParameter( "attack", true );
 		ViewModelEntity?.SetAnimParameter( "holdtype_attack", leftHand ? 2 : 1 );

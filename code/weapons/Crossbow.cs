@@ -1,8 +1,9 @@
 ﻿using Sandbox;
 using Sandbox.HoldTypes;
 
-[Library( "weapon_crossbow", Title = "Crossbow", Spawnable = true )]
-[Hammer.EditorModel( "weapons/rust_crossbow/rust_crossbow.vmdl" )]
+[Spawnable]
+[Library( "weapon_crossbow", Title = "Crossbow" )]
+[EditorModel( "weapons/rust_crossbow/rust_crossbow.vmdl" )]
 partial class Crossbow : Weapon
 { 
 	public override string ViewModelPath => "weapons/rust_crossbow/v_rust_crossbow.vmdl";
@@ -30,7 +31,7 @@ partial class Crossbow : Weapon
 			return;
 		}
 
-		(Owner as AnimEntity)?.SetAnimParameter( "b_attack", true );
+		(Owner as AnimatedEntity)?.SetAnimParameter( "b_attack", true );
 
 		ShootEffects();
 
@@ -49,7 +50,7 @@ partial class Crossbow : Weapon
 	{
 		base.Simulate( cl );
 
-		Zoomed = Input.Down( InputButton.Attack2 );
+		Zoomed = Input.Down( InputButton.SecondaryAttack );
 	}
 
 	public override void PostCameraSetup( ref CameraSetup camSetup )
@@ -75,13 +76,13 @@ partial class Crossbow : Weapon
 	{
 		Host.AssertClient();
 
-		if ( Owner == Local.Pawn )
+		/*if ( Owner == Local.Pawn )
 		{
 			new Sandbox.ScreenShake.Perlin( 0.5f, 4.0f, 1.0f, 0.5f );
-		}
+		}*/
 
 		ViewModelEntity?.SetAnimParameter( "fire", true );
-		CrosshairPanel?.CreateEvent( "fire" );
+		//CrosshairPanel?.CreateEvent( "fire" );
 	}
 
 	public override void SimulateAnimator( PawnAnimator anim )

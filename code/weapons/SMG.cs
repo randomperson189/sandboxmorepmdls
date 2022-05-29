@@ -2,8 +2,10 @@
 using Sandbox;
 using Sandbox.HoldTypes;
 
-[Library( "weapon_smg", Title = "SMG", Spawnable = true )]
-[Hammer.EditorModel( "weapons/rust_smg/rust_smg.vmdl" )]
+[Spawnable]
+[Title( "SMG" )]
+[Library( "weapon_smg", Title = "SMG" )]
+[EditorModel( "weapons/rust_smg/rust_smg.vmdl" )]
 partial class SMG : Weapon
 { 
 	public override string ViewModelPath => "weapons/rust_smg/v_rust_smg.vmdl";
@@ -33,7 +35,7 @@ partial class SMG : Weapon
 			return;
 		}
 
-		(Owner as AnimEntity).SetAnimParameter( "b_attack", true );
+		(Owner as AnimatedEntity).SetAnimParameter( "b_attack", true );
 
 		//
 		// Tell the clients to play the shoot effects
@@ -61,13 +63,13 @@ partial class SMG : Weapon
 		Particles.Create( "particles/pistol_muzzleflash.vpcf", EffectEntity, "muzzle" );
 		Particles.Create( "particles/pistol_ejectbrass.vpcf", EffectEntity, "ejection_point" );
 
-		if ( Owner == Local.Pawn )
+		/*if ( Owner == Local.Pawn )
 		{
 			new Sandbox.ScreenShake.Perlin(0.5f, 4.0f, 1.0f, 0.5f);
-		}
+		}*/
 
 		ViewModelEntity?.SetAnimParameter( "fire", true );
-		CrosshairPanel?.CreateEvent( "fire" );
+		//CrosshairPanel?.CreateEvent( "fire" );
 	}
 
 	public override void SimulateAnimator( PawnAnimator anim )

@@ -31,7 +31,7 @@ public class InventoryColumn : Panel
 			icon.Parent = this;
 			Icons.Add( icon );
 
-			icon.Name.Text = weapon.ClassInfo.Title;
+			icon.Name.Text = weapon.ClassName;
 		}
 	}
 

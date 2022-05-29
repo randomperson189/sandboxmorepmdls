@@ -1,5 +1,4 @@
-﻿
-using Sandbox;
+﻿using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
 using System;
@@ -15,7 +14,7 @@ class InventoryIcon : Panel
 		myWeapon = weapon;
 		Icon = Add.Panel( "icon" );
 		Name = Add.Label( "Weapon", "name" );
-		AddClass( weapon.ClassInfo.Name );
+		AddClass( weapon.ClassName );
 	}
 
 	internal void TickSelection( Weapon selectedWeapon )

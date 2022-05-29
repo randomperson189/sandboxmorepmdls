@@ -2,7 +2,7 @@
 
 
 [Library( "crossbow_bolt" )]
-[Hammer.Skip]
+[HideInEditor]
 partial class CrossbowBolt : ModelEntity
 {
 	bool Stuck;

@@ -1,8 +1,9 @@
 ﻿using Sandbox;
 using Sandbox.HoldTypes;
 
-[Library( "weapon_pistol", Title = "Pistol", Spawnable = true )]
-[Hammer.EditorModel( "weapons/rust_pistol/rust_pistol.vmdl" )]
+[Spawnable]
+[Library( "weapon_pistol", Title = "Pistol" )]
+[EditorModel( "weapons/rust_pistol/rust_pistol.vmdl" )]
 partial class Pistol : Weapon
 { 
 	public override string ViewModelPath => "weapons/rust_pistol/v_rust_pistol.vmdl";
@@ -28,7 +29,7 @@ partial class Pistol : Weapon
 
 	public override bool CanPrimaryAttack()
 	{
-		return base.CanPrimaryAttack() && Input.Pressed( InputButton.Attack1 );
+		return base.CanPrimaryAttack() && Input.Pressed( InputButton.PrimaryAttack );
 	}
 
 	public override void AttackPrimary()
@@ -42,7 +43,7 @@ partial class Pistol : Weapon
 			return;
 		}
 
-		(Owner as AnimEntity)?.SetAnimParameter( "b_attack", true );
+		(Owner as AnimatedEntity)?.SetAnimParameter( "b_attack", true );
 
 		//
 		// Tell the clients to play the shoot effects
