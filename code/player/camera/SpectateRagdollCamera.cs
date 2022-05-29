@@ -1,7 +1,7 @@
 ﻿
 namespace Sandbox
 {
-	public class SpectateRagdollCamera : CameraMode
+	public class SpectateRagdollCamera2 : CameraMode
 	{
 		public override void Activated()
 		{

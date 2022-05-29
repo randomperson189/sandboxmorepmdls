@@ -2,7 +2,7 @@
 using System.Collections;
 using Sandbox;
 
-public class ThirdPersonCamera : CameraMode
+public class ThirdPersonCamera2 : CameraMode
 {
 	[ConVar.Replicated]
 	public static bool thirdperson_mayamode { get; set; } = false;
@@ -17,7 +17,7 @@ public class ThirdPersonCamera : CameraMode
 
 	public override void Update()
 	{
-		var pawn = Local.Pawn as AnimEntity;
+		var pawn = Local.Pawn as AnimatedEntity;
 		var client = Local.Client;
 
 		if ( pawn == null )

@@ -1,7 +1,7 @@
 ﻿
 namespace Sandbox
 {
-	public class FirstPersonCamera : CameraMode
+	public class FirstPersonCamera2 : CameraMode
 	{
 		Vector3 lastPos;
 
