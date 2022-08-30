@@ -12,6 +12,8 @@ partial class Fists : Weapon
 	public override int Slot => 0;
 	public override int SlotWeight => 5;
 
+	public override bool UsesAmmo => false;
+
 	public override bool CanReload()
 	{
 		return false;

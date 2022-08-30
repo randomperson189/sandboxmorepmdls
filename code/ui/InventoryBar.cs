@@ -14,6 +14,8 @@ public class InventoryBar : Panel
 	public bool IsOpen;
 	Weapon SelectedWeapon;
 
+	public Sound uiSound;
+
 	public InventoryBar()
 	{
 		StyleSheet.Load( "/ui/InventoryBar.scss" );
@@ -92,7 +94,8 @@ public class InventoryBar : Panel
 			input.SuppressButton( InputButton.PrimaryAttack );
 			input.ActiveChild = SelectedWeapon;
 			IsOpen = false;
-			Sound.FromScreen( "player.weaponselectionclose" );
+			uiSound.Stop();
+			uiSound = Sound.FromScreen( "player.weaponselectionclose" );
 			return;
 		}
 
@@ -113,7 +116,10 @@ public class InventoryBar : Panel
 		}
 
 		if ( input.MouseWheel != 0 || input.Pressed( InputButton.Slot1 ) || input.Pressed( InputButton.Slot2 ) || input.Pressed( InputButton.Slot3 ) || input.Pressed( InputButton.Slot4 ) || input.Pressed( InputButton.Slot5 ) || input.Pressed( InputButton.Slot6 ) )
-			Sound.FromScreen( "player.weaponselectionmoveslot" );
+		{
+			uiSound.Stop();
+			uiSound = Sound.FromScreen( "player.weaponselectionmoveslot" );
+		}
 
 		input.MouseWheel = 0;
 	}

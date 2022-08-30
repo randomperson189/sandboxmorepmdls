@@ -4,14 +4,15 @@
     right: 0px;
     top: 0px;
     bottom: 0px;
-    margin: 100px;
-    margin-bottom: 200px;
+    padding: 100px;
+    padding-bottom: 200px;
     border-radius: 5px;
     pointer-events: none;
     transition: all 0.1s ease-out;
     position: absolute;
     font-family: poppins;
     opacity: 0;
+    z-index: 200;
 
     .tabs 
     {
@@ -24,12 +25,13 @@
         {
             padding: 6px 5px;
             margin-right: 10px;
-            font-size: 13px;
+            font-size: 23px;
             align-items: center;
             font-weight: 600;
             opacity: 0.2;
             color: #fff;
             cursor: pointer;
+            font-family: Poppins;
             //border-radius: 5px;
             label 
             {
@@ -63,8 +65,9 @@
         .body 
         {
             border-radius: 10px;
-            background-color: rgba( #111, 0.7 );
+            background-color: rgba( #111, 0.4 );
             flex-grow: 1;
+            backdrop-filter: blur( 100px );
         }
     }
 
@@ -82,9 +85,9 @@
             //	background-color: rgba( #333, 0.95 );
             flex-grow: 1;
             border-radius: 10px;
-            background-color: rgba( #111, 0.7 );
+            background-color: rgba( #111, 0.4 );
             padding: 10px;
-
+            backdrop-filter: blur( 100px );
 
             .toollist 
             {
@@ -99,13 +102,14 @@
                     transition: all 0.2s ease-out;
                     cursor: pointer;
 
-                    &:hover
+                    &:hover 
                     {
                         //border-left: 3px solid #3273eb;
                         color: white;
                     }
 
-                    &.active {
+                    &.active 
+                    {
                         //border-left: 5px solid #3273eb;
                         color: white;
                     }
@@ -123,7 +127,6 @@
     }
 }
 
-
 .spawnmenuopen spawnmenu 
 {
     transition: all 0.2s ease-out;
@@ -137,6 +140,7 @@
         transition: all 0.1s ease-out;
     }
 }
+
 
 .spawnpage 
 {
@@ -165,7 +169,7 @@
 
         .icon 
         {
-            border-radius: 16px;
+            border-radius: 8px;
             color: rgba( #fff, 0.5 );
             font-size: 12px;
             text-align: center;
@@ -174,7 +178,7 @@
             height: 100%;
             background-position: center;
             background-size: cover;
-            background-color: rgba(black, 0.1);
+            background-color: rgba(black, 0.0);
             background-image: url( /entity/spawnicon.png );
 
             label 
@@ -190,7 +194,7 @@
             &:hover 
             {
                 color: #fff;
-                background-color: rgba(black, 0.4);
+                background-color: rgba(black, 0.1);
             }
 
             &:active 
@@ -198,4 +202,32 @@
             }
         }
     }
+}
+
+
+spawnmenu .sidebar 
+{
+    flex-direction: column;
+    width: 30px;
+    padding: 10px;
+
+    .group 
+    {
+        flex-direction: column;
+    }
+
+    button 
+    {
+        cursor: pointer;
+        border-radius: 5px;
+        color: white;
+    }
+}
+
+
+icon, iconpanel 
+{
+    font-family: "material icons";
+    flex-grow: 1;
+    text-align: left;
 }

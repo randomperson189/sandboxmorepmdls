@@ -322,7 +322,7 @@ public partial class CarEntity : Prop, IUse
 
 			var forwardGrip = 0.1f;
 			forwardGrip = forwardGrip.LerpTo( 0.9f, currentInput.breaking );
-			body.Velocity = VelocityDamping( Velocity, rotation, new Vector3( forwardGrip, grip, 0 ), dt );
+			body.Velocity = VelocityDamping( body.Velocity, rotation, new Vector3( forwardGrip, grip, 0 ), dt );
 		}
 		else
 		{

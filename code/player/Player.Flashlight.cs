@@ -54,7 +54,7 @@ partial class SandboxPlayer
         {
             using (Prediction.Off())
             {
-                ClientShowFlashlightLocal(To.Single(this), shouldShow);
+                ClientShowFlashlightLocal(shouldShow);
             }
         }
 

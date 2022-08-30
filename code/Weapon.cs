@@ -15,6 +15,8 @@ public partial class Weapon : BaseWeapon, IUse
 	public virtual int Slot => 0;
 	public virtual int SlotWeight => 100;
 
+	public virtual bool UsesAmmo => true;
+
 	[Net, Predicted]
 	public int AmmoClip { get; set; }
 
@@ -226,7 +228,7 @@ public partial class Weapon : BaseWeapon, IUse
 
 	public bool IsUsable()
 	{
-		if ( AmmoClip > 0 ) return true;
+		if ( AmmoClip > 0 || !UsesAmmo) return true;
 		return AvailableAmmo() > 0;
 	}
 

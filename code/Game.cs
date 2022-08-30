@@ -15,6 +15,9 @@ partial class SandboxGame : Game
 		}
 	}
 
+	/// <summary>
+	/// A client has joined the server. Make them a pawn to play with
+	/// </summary>
 	public override void ClientJoined( Client cl )
 	{
 		base.ClientJoined( cl );

@@ -20,7 +20,7 @@ partial class Shotgun : Weapon
 
 		SetModel( "weapons/rust_pumpshotgun/rust_pumpshotgun.vmdl" );  
 
-		AmmoClip = 6;
+		AmmoClip = ClipSize;
 	}
 
 	public override void AttackPrimary() 
@@ -126,13 +126,9 @@ partial class Shotgun : Weapon
 			AmmoClip += ammo;
 
 			if ( AmmoClip < ClipSize )
-			{
 				Reload();
-			}
 			else
-			{
 				FinishReload();
-			}
 		}
 	}
 

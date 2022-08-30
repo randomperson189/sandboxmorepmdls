@@ -10,6 +10,8 @@ partial class Tool : Weapon
 
 	public override string ViewModelPath => "weapons/rust_pistol/v_rust_pistol.vmdl";
 
+	public override bool UsesAmmo => false;
+
 	[Net, Predicted]
 	public BaseTool CurrentTool { get; set; }
 

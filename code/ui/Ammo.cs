@@ -18,7 +18,7 @@ public class Ammo : Panel
 		if ( player == null ) return;
 
 		var weapon = player.ActiveChild as Weapon;
-		SetClass( "active", weapon != null );
+		SetClass( "active", weapon != null && weapon.UsesAmmo );
 
 		if ( weapon == null ) return;
 

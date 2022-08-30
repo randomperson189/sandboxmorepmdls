@@ -11,6 +11,7 @@ partial class Crossbow : Weapon
 	public override float PrimaryRate => 1;
 	public override int Slot => 3;
 	public override AmmoType AmmoType => AmmoType.Crossbow;
+	public override int ClipSize => 3;
 
 	[Net]
 	public bool Zoomed { get; set; }
@@ -19,7 +20,7 @@ partial class Crossbow : Weapon
 	{
 		base.Spawn();
 
-		AmmoClip = 3;
+		AmmoClip = ClipSize;
 		SetModel( "weapons/rust_crossbow/rust_crossbow.vmdl" );
 	}
 

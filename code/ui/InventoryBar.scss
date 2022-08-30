@@ -3,7 +3,7 @@
 	position: absolute;
 	left: 300px;
 	top: 75px;
-	font-family: Roboto;
+	font-family: poppins;
 	opacity: 0;
 	transition: all 0.2s ease-out;
 
@@ -23,15 +23,18 @@ inventorycolumn
 	color: white;
 	flex-direction: column;
 	align-items: flex-start; // align to the left, don't stretch
+	font-family: poppins;
 
 	.slot-number
 	{
-		background-color: rgba( black, 0.5 );
 		padding: 22px 15px 0px 10px;
 		font-size: 20px;
 		font-weight: bolder;
 		width: 50px;
 		height: 50px;
+		background-color: rgba( #333, 0.3 );
+		backdrop-filter: blur( 20px );
+		border-radius: 10px;
 	}
 
 	inventoryicon
@@ -84,13 +87,15 @@ inventoryicon
 	margin-top: 5px;
 	//mix-blend-mode: lighten;
 	color: white;
-	background-color: rgba( black, 0.5 );
 	font-size: 30px;
 	font-weight: lighter;
 	padding: 10px;
 	align-items: center;
 	justify-content: center;
 	overflow: hidden;
+	background-color: rgba( #333, 0.3 );
+	backdrop-filter: blur( 20px );
+	border-radius: 10px;
 
 	.icon
 	{
@@ -104,7 +109,7 @@ inventoryicon
 	&.active
 	{
 		//opacity: 1;
-		background-color: rgba( #0094ff, 0.5 );
+		background-color: rgba( #0094ff, 0.3 );
 
 		.icon
 		{
@@ -116,12 +121,12 @@ inventoryicon
 	&.empty
 	{
 		//opacity: 0.5;
-		background-color: rgba( #c004, 0.5 );
+		background-color: rgba( #c004, 0.3 );
 		//color: #f002;
 
 		.icon
 		{
-			background-color: #f50;
+			/*background-color: #f50;*/
 		}
 	}
 }

@@ -9,6 +9,8 @@ public partial class PhysGun : Weapon
 {
 	public override string ViewModelPath => "weapons/rust_pistol/v_rust_pistol.vmdl";
 
+	public override bool UsesAmmo => false;
+
 	protected PhysicsBody holdBody;
 	protected PhysicsBody velBody;
 	protected FixedJoint holdJoint;

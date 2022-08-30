@@ -9,6 +9,8 @@ public partial class GravGun : Weapon
 {
 	public override string ViewModelPath => "weapons/rust_pistol/v_rust_pistol.vmdl";
 
+	public override bool UsesAmmo => false;
+
 	private PhysicsBody holdBody;
 	private FixedJoint holdJoint;
 

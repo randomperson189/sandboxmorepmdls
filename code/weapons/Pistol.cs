@@ -19,7 +19,7 @@ partial class Pistol : Weapon
 		base.Spawn();
 
 		SetModel( "weapons/rust_pistol/rust_pistol.vmdl" );
-		AmmoClip = 12;
+		AmmoClip = ClipSize;
 	}
 
 	public override void SimulateAnimator( PawnAnimator anim )

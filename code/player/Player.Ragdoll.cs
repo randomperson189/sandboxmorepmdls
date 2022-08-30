@@ -6,32 +6,38 @@ partial class SandboxPlayer
 	private void BecomeRagdollOnClient( Vector3 velocity, DamageFlags damageFlags, Vector3 forcePos, Vector3 force, int bone )
 	{
 		var ent = new ModelEntity();
+		ent.Tags.Add( "ragdoll", "solid", "debris" );
 		ent.Position = Position;
 		ent.Rotation = Rotation;
 		ent.Scale = Scale;
-		ent.MoveType = MoveType.Physics;
 		ent.UsePhysicsCollision = true;
 		ent.EnableAllCollisions = true;
-		ent.CollisionGroup = CollisionGroup.Debris;
 		ent.SetModel( GetModelName() );
 		ent.CopyBonesFrom( this );
 		ent.CopyBodyGroups( this );
 		ent.CopyMaterialGroup( this );
+		ent.CopyMaterialOverrides( this );
 		ent.TakeDecalsFrom( this );
-		ent.EnableHitboxes = true;
 		ent.EnableAllCollisions = true;
 		ent.SurroundingBoundsMode = SurroundingBoundsType.Physics;
 		ent.RenderColor = RenderColor;
 		ent.PhysicsGroup.Velocity = velocity;
+		ent.PhysicsEnabled = true;
 
-		if ( Local.Pawn == this )
+		foreach ( var child in Children )
 		{
-			//ent.EnableDrawing = false; wtf
-		}
+			if ( !child.Tags.Has( "clothes" ) ) continue;
+			if ( child is not ModelEntity e ) continue;
 
-		ent.SetInteractsAs( CollisionLayer.Debris );
-		ent.SetInteractsWith( CollisionLayer.WORLD_GEOMETRY );
-		ent.SetInteractsExclude( CollisionLayer.Player | CollisionLayer.Debris );
+			var model = e.GetModelName();
+
+			var clothing = new ModelEntity();
+			clothing.SetModel( model );
+			clothing.SetParent( ent, true );
+			clothing.RenderColor = e.RenderColor;
+			clothing.CopyBodyGroups( e );
+			clothing.CopyMaterialGroup( e );
+		}
 
 		if ( damageFlags.HasFlag( DamageFlags.Bullet ) ||
 			 damageFlags.HasFlag( DamageFlags.PhysicsImpact ) )
