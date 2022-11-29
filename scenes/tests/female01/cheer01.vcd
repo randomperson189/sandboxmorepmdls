@@ -1,0 +1,58 @@
+// Choreo version 1
+actor "Player"
+{
+  channel "Voice"
+  {
+  }
+  channel "Face"
+  {
+    event flexanimation "Cheer"
+    {
+      time 0.000000 4.250000
+      param ""
+      flexanimations samples_use_time defaultcurvetype=curve_catmullrom_normalize_x_to_curve_catmullrom_normalize_x
+      {
+        "lid_raiser" combo 
+        {
+          0.2067 1.0000
+        }
+        {
+          0.2067 0.5000
+        }
+        "inner_raiser" combo 
+        {
+          0.2067 1.0000
+        }
+        {
+          0.2067 0.5000
+        }
+        "upper_raiser" combo 
+        {
+          0.2067 0.0000
+        }
+        {
+          0.2067 0.5000
+        }
+        "corner_puller" combo 
+        {
+          0.2067 1.0000
+        }
+        {
+          0.2067 0.5000
+        }
+      }
+    }
+  }
+}
+
+scalesettings
+{
+  "CChoreoView" "100"
+  "SceneRampTool" "100"
+  "RampTool" "100"
+  "ExpressionTool" "100"
+  "GestureTool" "100"
+}
+fps 60
+snap off
+ignorePhonemes off

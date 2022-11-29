@@ -138,34 +138,6 @@
 				]
 			},
 			{
-				_class = "AnimationList"
-				children = 
-				[
-					{
-						_class = "AnimFile"
-						name = "reference"
-						activity_name = ""
-						activity_weight = 1
-						weight_list_name = ""
-						fade_in_time = 0.2
-						fade_out_time = 0.2
-						looping = false
-						delta = false
-						worldSpace = false
-						hidden = false
-						anim_markup_ordered = false
-						disable_compression = false
-						source_filename = "models/work/m_anm/m_anm_anims/reference.smd"
-						start_frame = -1
-						end_frame = -1
-						framerate = -1.0
-						take = 0
-						reverse = false
-					},
-				]
-				default_root_bone_name = ""
-			},
-			{
 				_class = "IKData"
 				children = 
 				[
@@ -613,10 +585,7 @@
 						name = "pelvis"
 						parent_bone = "bip01_pelvis"
 						surface_prop = "default"
-						collision_group = "Default"
-						collision_interact_as = ""
-						collision_interact_with = ""
-						collision_interact_exclude = ""
+						collision_tags = "solid"
 						recenter_on_parent_bone = false
 						offset_origin = [ 0.0, 0.0, 0.0 ]
 						offset_angles = [ 0.0, 0.0, 0.0 ]
@@ -640,10 +609,7 @@
 						name = "spine2"
 						parent_bone = "bip01_spine2"
 						surface_prop = "default"
-						collision_group = "Default"
-						collision_interact_as = ""
-						collision_interact_with = ""
-						collision_interact_exclude = ""
+						collision_tags = "solid"
 						recenter_on_parent_bone = false
 						offset_origin = [ 0.0, 0.0, 0.0 ]
 						offset_angles = [ 0.0, 0.0, 0.0 ]
@@ -667,10 +633,7 @@
 						name = "upperarm_l"
 						parent_bone = "bip01_l_upperarm"
 						surface_prop = "default"
-						collision_group = "Default"
-						collision_interact_as = ""
-						collision_interact_with = ""
-						collision_interact_exclude = ""
+						collision_tags = "solid"
 						recenter_on_parent_bone = false
 						offset_origin = [ 0.0, 0.0, 0.0 ]
 						offset_angles = [ 0.0, 0.0, 0.0 ]
@@ -694,10 +657,7 @@
 						name = "forearm_l"
 						parent_bone = "bip01_l_forearm"
 						surface_prop = "default"
-						collision_group = "Default"
-						collision_interact_as = ""
-						collision_interact_with = ""
-						collision_interact_exclude = ""
+						collision_tags = "solid"
 						recenter_on_parent_bone = false
 						offset_origin = [ 0.0, 0.0, 0.0 ]
 						offset_angles = [ 0.0, 0.0, 0.0 ]
@@ -721,10 +681,7 @@
 						name = "hand_l"
 						parent_bone = "bip01_l_hand"
 						surface_prop = "default"
-						collision_group = "Default"
-						collision_interact_as = ""
-						collision_interact_with = ""
-						collision_interact_exclude = ""
+						collision_tags = "solid"
 						recenter_on_parent_bone = false
 						offset_origin = [ 0.0, 0.0, 0.0 ]
 						offset_angles = [ 0.0, 0.0, 0.0 ]
@@ -748,10 +705,7 @@
 						name = "hand_r"
 						parent_bone = "bip01_r_hand"
 						surface_prop = "default"
-						collision_group = "Default"
-						collision_interact_as = ""
-						collision_interact_with = ""
-						collision_interact_exclude = ""
+						collision_tags = "solid"
 						recenter_on_parent_bone = false
 						offset_origin = [ 0.0, 0.0, 0.0 ]
 						offset_angles = [ 0.0, 0.0, 0.0 ]
@@ -775,10 +729,7 @@
 						name = "upperarm_r"
 						parent_bone = "bip01_r_upperarm"
 						surface_prop = "default"
-						collision_group = "Default"
-						collision_interact_as = ""
-						collision_interact_with = ""
-						collision_interact_exclude = ""
+						collision_tags = "solid"
 						recenter_on_parent_bone = false
 						offset_origin = [ 0.0, 0.0, 0.0 ]
 						offset_angles = [ 0.0, 0.0, 0.0 ]
@@ -802,10 +753,7 @@
 						name = "forearm_r"
 						parent_bone = "bip01_r_forearm"
 						surface_prop = "default"
-						collision_group = "Default"
-						collision_interact_as = ""
-						collision_interact_with = ""
-						collision_interact_exclude = ""
+						collision_tags = "solid"
 						recenter_on_parent_bone = false
 						offset_origin = [ 0.0, 0.0, 0.0 ]
 						offset_angles = [ 0.0, 0.0, 0.0 ]
@@ -829,10 +777,7 @@
 						name = "head"
 						parent_bone = "bip01_head1"
 						surface_prop = "default"
-						collision_group = "Default"
-						collision_interact_as = ""
-						collision_interact_with = ""
-						collision_interact_exclude = ""
+						collision_tags = "solid"
 						recenter_on_parent_bone = false
 						offset_origin = [ 0.0, 0.0, 0.0 ]
 						offset_angles = [ 0.0, 0.0, 0.0 ]
@@ -856,10 +801,7 @@
 						name = "thigh_r"
 						parent_bone = "bip01_r_thigh"
 						surface_prop = "default"
-						collision_group = "Default"
-						collision_interact_as = ""
-						collision_interact_with = ""
-						collision_interact_exclude = ""
+						collision_tags = "solid"
 						recenter_on_parent_bone = false
 						offset_origin = [ 0.0, 0.0, 0.0 ]
 						offset_angles = [ 0.0, 0.0, 0.0 ]
@@ -883,10 +825,7 @@
 						name = "thigh_l"
 						parent_bone = "bip01_l_thigh"
 						surface_prop = "default"
-						collision_group = "Default"
-						collision_interact_as = ""
-						collision_interact_with = ""
-						collision_interact_exclude = ""
+						collision_tags = "solid"
 						recenter_on_parent_bone = false
 						offset_origin = [ 0.0, 0.0, 0.0 ]
 						offset_angles = [ 0.0, 0.0, 0.0 ]
@@ -910,10 +849,7 @@
 						name = "calf_r"
 						parent_bone = "bip01_r_calf"
 						surface_prop = "default"
-						collision_group = "Default"
-						collision_interact_as = ""
-						collision_interact_with = ""
-						collision_interact_exclude = ""
+						collision_tags = "solid"
 						recenter_on_parent_bone = false
 						offset_origin = [ 0.0, 0.0, 0.0 ]
 						offset_angles = [ 0.0, 0.0, 0.0 ]
@@ -937,10 +873,7 @@
 						name = "calf_l"
 						parent_bone = "bip01_l_calf"
 						surface_prop = "default"
-						collision_group = "Default"
-						collision_interact_as = ""
-						collision_interact_with = ""
-						collision_interact_exclude = ""
+						collision_tags = "solid"
 						recenter_on_parent_bone = false
 						offset_origin = [ 0.0, 0.0, 0.0 ]
 						offset_angles = [ 0.0, 0.0, 0.0 ]
@@ -964,10 +897,7 @@
 						name = "foot_r"
 						parent_bone = "bip01_r_foot"
 						surface_prop = "default"
-						collision_group = "Default"
-						collision_interact_as = ""
-						collision_interact_with = ""
-						collision_interact_exclude = ""
+						collision_tags = "solid"
 						recenter_on_parent_bone = false
 						offset_origin = [ 0.0, 0.0, 0.0 ]
 						offset_angles = [ 0.0, 0.0, 0.0 ]
@@ -991,10 +921,7 @@
 						name = "foot_l"
 						parent_bone = "bip01_l_foot"
 						surface_prop = "default"
-						collision_group = "Default"
-						collision_interact_as = ""
-						collision_interact_with = ""
-						collision_interact_exclude = ""
+						collision_tags = "solid"
 						recenter_on_parent_bone = false
 						offset_origin = [ 0.0, 0.0, 0.0 ]
 						offset_angles = [ 0.0, 0.0, 0.0 ]
@@ -1242,9 +1169,38 @@
 					},
 				]
 			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "AnimFile"
+						name = "reference"
+						activity_name = ""
+						activity_weight = 1
+						weight_list_name = ""
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						anim_markup_ordered = false
+						disable_compression = false
+						source_filename = "models/work/m_anm/m_anm_anims/reference.smd"
+						start_frame = -1
+						end_frame = -1
+						framerate = -1.0
+						take = 0
+						reverse = false
+					},
+				]
+				default_root_bone_name = ""
+			},
 		]
 		model_archetype = ""
 		primary_associated_entity = ""
 		anim_graph_name = "models/player/player_anims_shared.vanmgrph"
+		base_model_name = ""
 	}
 }
