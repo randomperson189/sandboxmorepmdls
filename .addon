@@ -3,10 +3,13 @@
   "Type": "game",
   "Org": "rdmpersn",
   "Ident": "sandboxmorepmdls",
+  "Tags": "sandbox, more, playermodels, gmod, hl2",
   "Schema": 1,
   "HasAssets": true,
   "AssetsPath": "",
-  "ResourcePaths": [],
+  "ResourcePaths": [
+    "/models/*"
+  ],
   "HasCode": true,
   "CodePath": "code",
   "RootNamespace": "Sandbox",
@@ -16,8 +19,17 @@
     "LeaderboardType": 0,
     "RankType": 0,
     "MapSelect": 0,
-    "GameNetworkType": 0,
-    "MaxPlayers": 0,
-    "MinPlayers": 0
+    "GameNetworkType": "Multiplayer",
+    "MaxPlayers": 32,
+    "MinPlayers": 1,
+    "ControlModes": {
+      "Keyboard": true,
+      "Gamepad": true
+    },
+    "DefaultLeaderboards": null,
+    "Summary": "Sandbox but with more Player Models",
+    "Description": "This is still in development so expect bugs such as missing animations, features and other broken shit.\r\n\r\nThis is the Sandbox gamemode but with more playermodels such as GMod and a few other custom ones.\r\n\r\nTo change your playermodel, hold G and select from the menu.\r\n\r\n\r\nThis also has uncompiled assets at the GitHub repo so feel free to edit or use them for other things.\r\n\r\nhttps://github.com/randomperson189/sandboxmorepmdls",
+    "Public": true,
+    "ReplaceTags": "sandbox more playermodels garrysmod gmod"
   }
 }
