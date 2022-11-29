@@ -40,7 +40,9 @@ public partial class PlayerModelSelect : Panel
 			panel.Style.BackgroundImage = Texture.Load( FileSystem.Mounted, $"{file}.vmdl_c.png", false );
 			panel.Add.Label( $"{file}.vmdl", "label" );
 		};
-
+		
+		Log.Info(game.playerModels);
+		
 		foreach ( string file in game.playerModels )
 		{
 			if ( string.IsNullOrWhiteSpace( file ) ) continue;

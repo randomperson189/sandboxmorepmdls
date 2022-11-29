@@ -19,10 +19,10 @@
 inventorycolumn
 {
 	margin-right: 5px;
-	//mix-blend-mode: lighten;
+	/*mix-blend-mode: lighten;*/
 	color: white;
 	flex-direction: column;
-	align-items: flex-start; // align to the left, don't stretch
+	align-items: flex-start; /* align to the left, don't stretch */
 	font-family: poppins;
 
 	.slot-number
@@ -48,18 +48,18 @@ inventorycolumn
 
 		.icon
 		{
-			//opacity: 0;
+			/*opacity: 0;*/
 		}
 
 		.name
 		{
-			//opacity: 0;
+			/*opacity: 0;*/
 		}
 	}
 
 	&.active
 	{
-		//opacity: 1;
+		/*opacity: 1;*/
 
 		inventoryicon
 		{
@@ -85,7 +85,7 @@ inventorycolumn
 inventoryicon
 {
 	margin-top: 5px;
-	//mix-blend-mode: lighten;
+	/*mix-blend-mode: lighten;*/
 	color: white;
 	font-size: 30px;
 	font-weight: lighter;
@@ -108,21 +108,21 @@ inventoryicon
 
 	&.active
 	{
-		//opacity: 1;
+		/*opacity: 1;*/
 		background-color: rgba( #0094ff, 0.3 );
 
 		.icon
 		{
-			// filter: drop-shadow additive glow
-			//opacity: 1;
+			/*filter: drop-shadow additive glow;*/
+			/*opacity: 1;*/
 		}
 	}
 
 	&.empty
 	{
-		//opacity: 0.5;
+		/*opacity: 0.5;*/
 		background-color: rgba( #c004, 0.3 );
-		//color: #f002;
+		/*color: #f002;*/
 
 		.icon
 		{

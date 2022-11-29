@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 partial class SandboxGame : Game
 {
-	public string[] playerModels = { "models/player/alyx", "models/player/barney", "models/player/breen", "models/player/eli", "models/player/gman", "models/player/kleiner" };
+	public string[] playerModels = { "models/player/gordon", "models/player/alyx", "models/player/barney", "models/player/breen", "models/player/eli", "models/player/gman", "models/player/kleiner" };
 
 	public SandboxGame()
 	{
