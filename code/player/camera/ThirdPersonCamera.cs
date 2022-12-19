@@ -1,8 +1,8 @@
-﻿using System;
+﻿/*using System;
 using System.Collections;
 using Sandbox;
 
-public class ThirdPersonCamera2 : CameraMode
+public class ThirdPersonCamera2 : CameraComponent
 {
 	[ConVar.Replicated]
 	public static bool thirdperson_mayamode { get; set; } = false;
@@ -17,8 +17,8 @@ public class ThirdPersonCamera2 : CameraMode
 
 	public override void Update()
 	{
-		var pawn = Local.Pawn as AnimatedEntity;
-		var client = Local.Client;
+		var pawn = Game.LocalPawn as AnimatedEntity;
+		var IClient = Local.Client;
 
 		if ( pawn == null )
 			return;
@@ -32,7 +32,7 @@ public class ThirdPersonCamera2 : CameraMode
 		float distance = cam_idealdist * pawn.Scale;
 		
 		targetPos = center;
-		targetPos += myRotation.Forward * -distance; ;
+		targetPos += myRotation.Forward * -distance;
 
 		Viewer = null;
 
@@ -53,8 +53,9 @@ public class ThirdPersonCamera2 : CameraMode
 		}
 	}
 
-	public override void BuildInput( InputBuilder input )
+	public override void BuildInput( InputBuilder Input )
 	{
-		base.BuildInput( input );
+		base.BuildInput( Input );
 	}
 }
+*/

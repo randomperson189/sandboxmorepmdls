@@ -1,13 +1,13 @@
-﻿
+﻿/*
 namespace Sandbox
 {
-	public class FirstPersonCamera2 : CameraMode
+	public class FirstPersonCamera2 : CameraComponent
 	{
 		Vector3 lastPos;
 
 		public override void Activated()
 		{
-			var pawn = Local.Pawn;
+			var pawn = Game.LocalPawn;
 			if ( pawn == null ) return;
 
 			Position = pawn.EyePosition;
@@ -18,9 +18,9 @@ namespace Sandbox
 
 		public override void Update()
 		{
-			var pawn = Local.Pawn;
+			var pawn = Game.LocalPawn;
 			if ( pawn == null ) return;
-			
+			*/
 			/*var eyePos = pawn.EyePos;
 			if ( eyePos.Distance( lastPos ) < 300 ) // TODO: Tweak this, or add a way to invalidate lastpos when teleporting
 			{
@@ -30,7 +30,7 @@ namespace Sandbox
 			{
 				Position = eyePos;
 			}*/
-			
+			/*
 			Position = pawn.EyePosition;
 			Rotation = pawn.EyeRotation;
 
@@ -39,3 +39,4 @@ namespace Sandbox
 		}
 	}
 }
+*/

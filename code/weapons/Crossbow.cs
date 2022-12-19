@@ -1,4 +1,4 @@
-﻿using Sandbox;
+﻿/*using Sandbox;
 using Sandbox.HoldTypes;
 
 [Spawnable]
@@ -36,7 +36,7 @@ partial class Crossbow : Weapon
 
 		ShootEffects();
 
-		if ( IsServer )
+		if ( Game.IsServer)
 		using ( Prediction.Off() )
 		{
 			var bolt = new CrossbowBolt();
@@ -47,7 +47,7 @@ partial class Crossbow : Weapon
 		}
 	}
 
-	public override void Simulate( Client cl )
+	public override void Simulate( IClient cl )
 	{
 		base.Simulate( cl );
 
@@ -75,19 +75,19 @@ partial class Crossbow : Weapon
 	[ClientRpc]
 	protected override void ShootEffects()
 	{
-		Host.AssertClient();
-
-		/*if ( Owner == Local.Pawn )
+		Game.AssertClient();
+*/
+		/*if ( Owner == Game.LocalPawn )
 		{
 			new Sandbox.ScreenShake.Perlin( 0.5f, 4.0f, 1.0f, 0.5f );
 		}*/
 
-		ViewModelEntity?.SetAnimParameter( "fire", true );
+		//ViewModelEntity?.SetAnimParameter( "fire", true );
 		//CrosshairPanel?.CreateEvent( "fire" );
-	}
+	/*}
 
 	public override void SimulateAnimator( PawnAnimator anim )
 	{
 		anim.SetAnimParameter( "holdtype", (int)HoldType.Crossbow );
 	}
-}
+}*/

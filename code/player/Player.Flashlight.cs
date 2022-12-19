@@ -2,7 +2,7 @@ using Sandbox;
 
 // TODO Fix flickering on close-range walls (with fast rotation)
 // TODO Add physics (avoid collision with walls or the playermodel)
-partial class SandboxPlayer
+/*partial class SandboxPlayer
 {
     private Flashlight _worldFlashlight;
     private Flashlight _viewFlashlight;
@@ -44,13 +44,13 @@ partial class SandboxPlayer
 
         if (IsFlashlightOn)
         {
-            if (IsServer)
+            if (Game.IsServer)
                 _worldFlashlight.TurnOff();
             else
                 _viewFlashlight.TurnOff();
         }
 
-        if (IsServer)
+        if (Game.IsServer)
         {
             using (Prediction.Off())
             {
@@ -62,7 +62,7 @@ partial class SandboxPlayer
         {
 			if (!HasFlashlightEntity)
             {
-                if (IsServer)
+                if (Game.IsServer)
                 {
                     _worldFlashlight = new();
                     _worldFlashlight.EnableHideInFirstPerson = true;
@@ -81,7 +81,7 @@ partial class SandboxPlayer
             }
             else
             {
-                if (IsServer)
+                if (Game.IsServer)
                 {
 					_worldFlashlight.SetParent(null);
                     _worldFlashlight.Rotation = EyeRotation;
@@ -95,12 +95,12 @@ partial class SandboxPlayer
                 }
             }
 
-            if (IsServer && playSounds)
+            if (Game.Game.IsServer&& playSounds)
             {
                 PlaySound("player.flashlighton");
             }
         }
-        else if (IsServer && playSounds)
+        else if (Game.Game.IsServer&& playSounds)
         {
             PlaySound("player.flashlightoff");
         }
@@ -108,7 +108,7 @@ partial class SandboxPlayer
 
     private void TickPlayerFlashlight()
     {
-        if (IsServer)
+        if (Game.IsServer)
         {
             using (Prediction.Off())
             {
@@ -125,8 +125,8 @@ partial class SandboxPlayer
             }
         }
     }
-
-    public override void PostCameraSetup(ref CameraSetup camSetup)
+*/
+    /*public override void PostCameraSetup(CameraSetup camSetup)
     {
         base.PostCameraSetup(ref camSetup);
 
@@ -135,8 +135,8 @@ partial class SandboxPlayer
             _viewFlashlight.Rotation = Input.Rotation;
             _viewFlashlight.Position = EyePosition + Input.Rotation.Forward * FLASHLIGHT_DISTANCE;
         }
-    }
-}
+    }*/
+/*}
 
 [HideInEditor]
 [Library("ent_flashlight")]
@@ -155,6 +155,7 @@ public partial class Flashlight : SpotLightEntity
         Color = Color.White;
         InnerConeAngle = 10f;
         OuterConeAngle = 30f;
-        FogStength = 1f;
+        //FogStength = 1f;
     }
 }
+*/

@@ -1,0 +1,121 @@
+﻿
+$blue: #3273eb;
+
+@import "/styles/spawnmenu/spawnmenu.scss";
+@import "/styles/inventory/inventorybar.scss";
+@import "/styles/hud/chatbox.scss";
+
+Health
+{
+	position: absolute;
+	left: 48px;
+	bottom: 48px;
+	font-size: 40px;
+	font-weight: bold;
+	color: white;
+	height: 80px;
+	padding: 0 20px;
+	align-items: center;
+	font-family: Poppins;
+	background-color: rgba( #333, 0.4 );
+	backdrop-filter: blur( 20px );
+	border-radius: 10px;
+	
+	&.danger
+	{
+		color: red;
+	}
+}
+
+Ammo
+{
+	position: absolute;
+	background-color: rgba( black, 0.5 );
+	right: 48px;
+	bottom: 48px;
+	font-size: 40px;
+	font-weight: bold;
+	color: white;
+	height: 80px;
+	padding: 0 20px;
+	align-items: center;
+	font-family: Poppins;
+	background-color: rgba( #333, 0.4 );
+	backdrop-filter: blur( 20px );
+	border-radius: 10px;
+	opacity: 0;
+
+	&.danger
+	{
+		color: red;
+	}
+
+	&.active
+	{
+		opacity: 1;
+	}
+}
+
+CurrentTool
+{
+	position: absolute;
+	background-color: rgba( black, 0.5 );
+	backdrop-filter: blur( 20px );
+	border-radius: 10px;
+	top: 100px;
+	left: 100px;
+	padding: 20px 50px;
+	flex-direction: column;
+	opacity: 0.0;
+
+
+	&.active
+	{
+		opacity: 1.0;
+	}
+
+	.title
+	{
+		font-size: 40px;
+		color: white;
+		font-family: Poppins;
+		font-weight: 800;
+		mix-blend-mode: lighten;
+		text-transform: uppercase;
+	}
+
+	.description
+	{
+		font-size: 14px;
+		font-weight: normal;
+		color: white;
+		opacity: 0.8;
+		font-family: Poppins;
+		font-weight: 500;
+		mix-blend-mode: lighten;
+		text-transform: uppercase;
+	}
+}
+
+.spawnmenuopen CurrentTool
+{
+	opacity: 0.01;
+}
+
+rootpanel
+{
+	background-color: rgba( #333, 0 );
+	transition: background-color 0.2s ease-in;
+
+	&.spawnmenuopen
+	{
+		transition: background-color 0.1s ease-out;
+		background-color: rgba( #333, 0.9 );
+	}
+
+
+	&.devcamera
+	{
+		display: none;
+	}
+}

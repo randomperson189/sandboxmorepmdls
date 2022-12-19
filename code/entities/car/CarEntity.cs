@@ -1,4 +1,4 @@
-﻿using Sandbox;
+﻿/*using Sandbox;
 using System;
 
 [Spawnable]
@@ -192,10 +192,10 @@ public partial class CarEntity : Prop, IUse
 		}
 	}
 
-	public override void Simulate( Client owner )
+	public override void Simulate( IClient owner )
 	{
 		if ( owner == null ) return;
-		if ( !IsServer ) return;
+		if ( !Game.IsServer) return;
 
 		using ( Prediction.Off() )
 		{
@@ -222,7 +222,7 @@ public partial class CarEntity : Prop, IUse
 	[Event.Physics.PreStep]
 	public void OnPrePhysicsStep()
 	{
-		if ( !IsServer )
+		if ( !Game.IsServer)
 			return;
 
 		var selfBody = PhysicsBody;
@@ -423,7 +423,7 @@ public partial class CarEntity : Prop, IUse
 	float wheelAngle = 0.0f;
 	float wheelRevolute = 0.0f;
 
-	[Event.Frame]
+	[Event.Client.Frame]
 	public void OnFrame()
 	{
 		wheelAngle = wheelAngle.LerpTo( TurnDirection * 25, 1.0f - MathF.Pow( 0.001f, Time.Delta ) );
@@ -465,7 +465,7 @@ public partial class CarEntity : Prop, IUse
 		player.Parent = null;
 
 		if ( player.LifeState != LifeState.Dead )
-			player.CameraMode = new FirstPersonCamera2();
+			player.CameraComponent = new FirstPersonCamera2();
 
 		if ( player.PhysicsBody.IsValid() )
 		{
@@ -482,7 +482,7 @@ public partial class CarEntity : Prop, IUse
 			player.VehicleController = new CarController();
 			player.VehicleAnimator = new CarAnimator();
 			//player.LastCamera = player.Camera;
-			player.CameraMode = new CarCamera();
+			player.CameraComponent = new CarCamera();
 			player.Parent = this;
 			player.LocalPosition = Vector3.Up * 10;
 			player.LocalRotation = Rotation.Identity;
@@ -504,7 +504,7 @@ public partial class CarEntity : Prop, IUse
 	{
 		base.StartTouch( other );
 
-		if ( !IsServer )
+		if ( !Game.IsServer)
 			return;
 
 		var body = PhysicsBody;
@@ -537,7 +537,7 @@ public partial class CarEntity : Prop, IUse
 
 	protected override void OnPhysicsCollision( CollisionEventData eventData )
 	{
-		if ( !IsServer )
+		if ( !Game.IsServer)
 			return;
 
 		if ( eventData.Entity is SandboxPlayer player && player.Vehicle != null )
@@ -576,3 +576,4 @@ public partial class CarEntity : Prop, IUse
 		}
 	}
 }
+*/

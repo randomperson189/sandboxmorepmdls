@@ -1,7 +1,7 @@
 ﻿
-namespace Sandbox
+/*namespace Sandbox
 {
-	public class SpectateRagdollCamera2 : CameraMode
+	public class SpectateRagdollCamera2 : CameraComponent
 	{
 		public override void Activated()
 		{
@@ -12,7 +12,7 @@ namespace Sandbox
 
 		public override void Update()
 		{
-			var player = Local.Pawn as Player;
+			var player = Game.LocalPawn as Player;
 			if ( player == null ) return;
 
 			// lerp the focus point
@@ -49,12 +49,12 @@ namespace Sandbox
 		
 		public virtual Vector3 GetSpectatePoint()
 		{
-			if ( Local.Pawn is Player player && player.Corpse.IsValid() )
+			if ( Game.LocalPawn is Player player && player.Corpse.IsValid() )
 			{
 				return player.Corpse.PhysicsGroup.MassCenter;
 			}
 
-			return Local.Pawn.Position;
+			return Game.LocalPawn.Position;
 		}
 
 		public virtual Vector3 GetViewOffset()
@@ -66,3 +66,4 @@ namespace Sandbox
 		}
 	}
 }
+*/

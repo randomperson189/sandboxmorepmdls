@@ -1,25 +1,16 @@
 using Sandbox;
 using System;
-using System.Linq;
-using Sandbox.HoldTypes;
 
-[Spawnable]
-[Library( "physgun", Title = "Physics Gun" )]
-public partial class PhysGun : Weapon
+[Library( "physgun" )]
+public partial class PhysGun : Carriable
 {
 	public override string ViewModelPath => "weapons/rust_pistol/v_rust_pistol.vmdl";
-
-	public override bool UsesAmmo => false;
-
-	protected PhysicsBody holdBody;
-	protected PhysicsBody velBody;
-	protected FixedJoint holdJoint;
-	protected FixedJoint velJoint;
 
 	protected PhysicsBody heldBody;
 	protected Vector3 heldPos;
 	protected Rotation heldRot;
-
+	protected Vector3 holdPos;
+	protected Rotation holdRot;
 	protected float holdDistance;
 	protected bool grabbing;
 
@@ -29,9 +20,11 @@ public partial class PhysGun : Weapon
 	protected virtual float LinearDampingRatio => 1.0f;
 	protected virtual float AngularFrequency => 20.0f;
 	protected virtual float AngularDampingRatio => 1.0f;
-	protected virtual float TargetDistanceSpeed => 50.0f;
-	protected virtual float RotateSpeed => 0.2f;
+	protected virtual float TargetDistanceSpeed => 25.0f;
+	protected virtual float RotateSpeed => 0.125f;
 	protected virtual float RotateSnapAt => 45.0f;
+
+	public const string GrabbedTag = "grabbed";
 
 	[Net] public bool BeamActive { get; set; }
 	[Net] public Entity GrabbedEntity { get; set; }
@@ -44,24 +37,17 @@ public partial class PhysGun : Weapon
 	{
 		base.Spawn();
 
+		Tags.Add( "weapon" );
 		SetModel( "weapons/rust_pistol/rust_pistol.vmdl" );
-
-		CollisionGroup = CollisionGroup.Weapon;
-		SetInteractsAs( CollisionLayer.Debris );
 	}
 
-	public override void SimulateAnimator( PawnAnimator anim )
-	{
-		anim.SetAnimParameter( "holdtype", (int)HoldType.Physgun );
-	}
-
-	public override void Simulate( Client client )
+	public override void Simulate( IClient Client )
 	{
 		if ( Owner is not Player owner ) return;
 
 		var eyePos = owner.EyePosition;
 		var eyeDir = owner.EyeRotation.Forward;
-		var eyeRot = Rotation.From( new Angles( 0.0f, owner.EyeRotation.Angles().yaw, 0.0f ) );
+		var eyeRot = Rotation.From( new Angles( 0.0f, owner.EyeRotation.Yaw(), 0.0f ) );
 
 		if ( Input.Pressed( InputButton.PrimaryAttack ) )
 		{
@@ -81,13 +67,10 @@ public partial class PhysGun : Weapon
 
 		BeamActive = grabEnabled;
 
-		if ( IsServer )
+		if ( Game.IsServer)
 		{
 			using ( Prediction.Off() )
 			{
-				if ( !holdBody.IsValid() )
-					return;
-
 				if ( grabEnabled )
 				{
 					if ( heldBody.IsValid() )
@@ -96,7 +79,7 @@ public partial class PhysGun : Weapon
 					}
 					else
 					{
-						TryStartGrab( owner, eyePos, eyeRot, eyeDir );
+						TryStartGrab( eyePos, eyeRot, eyeDir );
 					}
 				}
 				else if ( grabbing )
@@ -106,7 +89,7 @@ public partial class PhysGun : Weapon
 
 				if ( !grabbing && Input.Pressed( InputButton.Reload ) )
 				{
-					TryUnfreezeAll( owner, eyePos, eyeRot, eyeDir );
+					TryUnfreezeAll( eyePos, eyeRot, eyeDir );
 				}
 			}
 		}
@@ -117,21 +100,11 @@ public partial class PhysGun : Weapon
 		}
 	}
 
-	private static bool IsBodyGrabbed( PhysicsBody body )
-	{
-		// There for sure is a better way to deal with this
-		if ( All.OfType<PhysGun>().Any( x => x?.HeldBody?.PhysicsGroup == body?.PhysicsGroup ) ) return true;
-		if ( All.OfType<GravGun>().Any( x => x?.HeldBody?.PhysicsGroup == body?.PhysicsGroup ) ) return true;
-
-		return false;
-	}
-
-	private void TryUnfreezeAll( Player owner, Vector3 eyePos, Rotation eyeRot, Vector3 eyeDir )
+	private void TryUnfreezeAll( Vector3 eyePos, Rotation eyeRot, Vector3 eyeDir )
 	{
 		var tr = Trace.Ray( eyePos, eyePos + eyeDir * MaxTargetDistance )
 			.UseHitboxes()
-			.Ignore( owner, false )
-			.HitLayer( CollisionLayer.Debris )
+			.Ignore( this )
 			.Run();
 
 		if ( !tr.Hit || !tr.Entity.IsValid() || tr.Entity.IsWorld ) return;
@@ -163,12 +136,12 @@ public partial class PhysGun : Weapon
 		}
 	}
 
-	private void TryStartGrab( Player owner, Vector3 eyePos, Rotation eyeRot, Vector3 eyeDir )
+	private void TryStartGrab( Vector3 eyePos, Rotation eyeRot, Vector3 eyeDir )
 	{
 		var tr = Trace.Ray( eyePos, eyePos + eyeDir * MaxTargetDistance )
 			.UseHitboxes()
-			.Ignore( owner, false )
-			.HitLayer( CollisionLayer.Debris )
+			.WithAnyTags( "solid", "player", "debris" )
+			.Ignore( this )
 			.Run();
 
 		if ( !tr.Hit || !tr.Entity.IsValid() || tr.Entity.IsWorld || tr.StartedSolid ) return;
@@ -193,18 +166,23 @@ public partial class PhysGun : Weapon
 		if ( body.BodyType == PhysicsBodyType.Keyframed && rootEnt is not Player )
 			return;
 
+		//
 		// Unfreeze
+		//
 		if ( body.BodyType == PhysicsBodyType.Static )
 		{
 			body.BodyType = PhysicsBodyType.Dynamic;
 		}
 
-		if ( IsBodyGrabbed( body ) )
+		if ( rootEnt.Tags.Has( GrabbedTag ) )
 			return;
 
 		GrabInit( body, eyePos, tr.EndPosition, eyeRot );
 
 		GrabbedEntity = rootEnt;
+		GrabbedEntity.Tags.Add( GrabbedTag );
+		GrabbedEntity.Tags.Add( $"{GrabbedTag}{Client.SteamId}" );
+
 		GrabbedPos = body.Transform.PointToLocal( tr.EndPosition );
 		GrabbedBone = body.GroupIndex;
 
@@ -246,38 +224,17 @@ public partial class PhysGun : Weapon
 
 	private void Activate()
 	{
-		if ( !IsServer )
+		if ( !Game.IsServer)
+		{
 			return;
-
-		if ( !holdBody.IsValid() )
-		{
-			holdBody = new PhysicsBody( Map.Physics )
-			{
-				BodyType = PhysicsBodyType.Keyframed
-			};
-		}
-
-		if ( !velBody.IsValid() )
-		{
-			velBody = new PhysicsBody( Map.Physics )
-			{
-				BodyType = PhysicsBodyType.Dynamic,
-				AutoSleep = false
-			};
 		}
 	}
 
 	private void Deactivate()
 	{
-		if ( IsServer )
+		if ( Game.IsServer)
 		{
 			GrabEnd();
-
-			holdBody?.Remove();
-			holdBody = null;
-
-			velBody?.Remove();
-			velBody = null;
 		}
 
 		KillEffects();
@@ -321,34 +278,17 @@ public partial class PhysGun : Weapon
 		holdDistance = holdDistance.Clamp( MinTargetDistance, MaxTargetDistance );
 
 		heldRot = rot.Inverse * heldBody.Rotation;
+		heldPos = heldBody.Transform.PointToLocal( grabPos );
 
-		holdBody.Position = grabPos;
-		holdBody.Rotation = heldBody.Rotation;
-
-		velBody.Position = grabPos;
-		velBody.Rotation = heldBody.Rotation;
+		holdPos = heldBody.Position;
+		holdRot = heldBody.Rotation;
 
 		heldBody.Sleeping = false;
 		heldBody.AutoSleep = false;
-
-		holdJoint = PhysicsJoint.CreateFixed( holdBody, heldBody.WorldPoint( grabPos ) );
-		holdJoint.SpringLinear = new PhysicsSpring( LinearFrequency, LinearDampingRatio );
-		holdJoint.SpringAngular = new PhysicsSpring( AngularFrequency, AngularDampingRatio );
-
-		velJoint = PhysicsJoint.CreateFixed( holdBody, velBody );
-		velJoint.SpringLinear = new PhysicsSpring( LinearFrequency, LinearDampingRatio );
-		velJoint.SpringAngular = new PhysicsSpring( AngularFrequency, AngularDampingRatio );
-
 	}
 
 	private void GrabEnd()
 	{
-		holdJoint?.Remove();
-		holdJoint = null;
-
-		velJoint?.Remove();
-		velJoint = null;
-
 		if ( heldBody.IsValid() )
 		{
 			heldBody.AutoSleep = true;
@@ -356,9 +296,36 @@ public partial class PhysGun : Weapon
 
 		Client?.Pvs.Remove( GrabbedEntity );
 
+		if ( GrabbedEntity.IsValid() )
+		{
+			GrabbedEntity.Tags.Remove( GrabbedTag );
+			GrabbedEntity.Tags.Remove( $"{GrabbedTag}{Client.SteamId}" );
+			GrabbedEntity = null;
+		}
+
 		heldBody = null;
-		GrabbedEntity = null;
 		grabbing = false;
+	}
+
+	[Event.Physics.PreStep]
+	public void OnPrePhysicsStep()
+	{
+		if ( !Game.IsServer)
+			return;
+
+		if ( !heldBody.IsValid() )
+			return;
+
+		if ( GrabbedEntity is Player )
+			return;
+
+		var velocity = heldBody.Velocity;
+		Vector3.SmoothDamp( heldBody.Position, holdPos, ref velocity, 0.075f, Time.Delta );
+		heldBody.Velocity = velocity;
+
+		var angularVelocity = heldBody.AngularVelocity;
+		Rotation.SmoothDamp( heldBody.Rotation, holdRot, ref angularVelocity, 0.075f, Time.Delta );
+		heldBody.AngularVelocity = angularVelocity;
 	}
 
 	private void GrabMove( Vector3 startPos, Vector3 dir, Rotation rot, bool snapAngles )
@@ -366,29 +333,25 @@ public partial class PhysGun : Weapon
 		if ( !heldBody.IsValid() )
 			return;
 
-		holdBody.Position = startPos + dir * holdDistance;
+		holdPos = startPos - heldPos * heldBody.Rotation + dir * holdDistance;
 
 		if ( GrabbedEntity is Player player )
 		{
-			player.Velocity = velBody.Velocity;
-			player.Position = holdBody.Position - heldPos;
-
-			var controller = player.GetActiveController();
-			if ( controller != null )
-			{
-				controller.Velocity = velBody.Velocity;
-			}
+			var velocity = player.Velocity;
+			Vector3.SmoothDamp( player.Position, holdPos, ref velocity, 0.075f, Time.Delta );
+			player.Velocity = velocity;
+			player.GroundEntity = null;
 
 			return;
 		}
 
-		holdBody.Rotation = rot * heldRot;
+		holdRot = rot * heldRot;
 
 		if ( snapAngles )
 		{
-			var angles = holdBody.Rotation.Angles();
+			var angles = holdRot.Angles();
 
-			holdBody.Rotation = Rotation.From(
+			holdRot = Rotation.From(
 				MathF.Round( angles.pitch / RotateSnapAt ) * RotateSnapAt,
 				MathF.Round( angles.yaw / RotateSnapAt ) * RotateSnapAt,
 				MathF.Round( angles.roll / RotateSnapAt ) * RotateSnapAt
@@ -402,27 +365,30 @@ public partial class PhysGun : Weapon
 		holdDistance = holdDistance.Clamp( MinTargetDistance, MaxTargetDistance );
 	}
 
-	protected virtual void DoRotate( Rotation eye, Vector3 input )
+	protected virtual void DoRotate( Rotation eye, Vector3 Input )
 	{
 		var localRot = eye;
-		localRot *= Rotation.FromAxis( Vector3.Up, input.x );
-		localRot *= Rotation.FromAxis( Vector3.Right, input.y );
+		localRot *= Rotation.FromAxis( Vector3.Up, Input.x * RotateSpeed );
+		localRot *= Rotation.FromAxis( Vector3.Right, Input.y * RotateSpeed );
 		localRot = eye.Inverse * localRot;
 
 		heldRot = localRot * heldRot;
 	}
 
-	public override void BuildInput( InputBuilder owner )
+	public override void BuildInput()
 	{
-		if ( !GrabbedEntity.IsValid() )
-			return;
-
-		if ( !owner.Down( InputButton.PrimaryAttack ) )
-			return;
-
-		if ( owner.Down( InputButton.Use ) )
+		if ( !Input.Down( InputButton.Use ) || !Input.Down( InputButton.PrimaryAttack ) ||
+			 !GrabbedEntity.IsValid() )
 		{
-			owner.ViewAngles = owner.OriginalViewAngles;
+			return;
+		}
+
+		//
+		// Lock view angles
+		//
+		if ( Owner is Player pl )
+		{
+			pl.ViewAngles = pl.OriginalViewAngles;
 		}
 	}
 

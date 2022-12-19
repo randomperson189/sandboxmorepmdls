@@ -1,7 +1,7 @@
-﻿using Sandbox;
+﻿/*using Sandbox;
 using System;
 
-public class CarCamera : CameraMode
+public class CarCamera : CameraComponent
 {
 	protected virtual float MinFov => 80.0f;
 	protected virtual float MaxFov => 100.0f;
@@ -37,7 +37,7 @@ public class CarCamera : CameraMode
 
 	public override void Activated()
 	{
-		var pawn = Local.Pawn;
+		var pawn = Game.LocalPawn;
 		if ( pawn == null ) return;
 
 		orbitEnabled = false;
@@ -59,7 +59,7 @@ public class CarCamera : CameraMode
 
 	public override void Update()
 	{
-		var pawn = Local.Pawn;
+		var pawn = Game.LocalPawn;
 		if ( pawn == null ) return;
 
 		var car = (pawn as SandboxPlayer)?.Vehicle as CarEntity;
@@ -128,7 +128,7 @@ public class CarCamera : CameraMode
 
 	private void DoFirstPerson()
 	{
-		var pawn = Local.Pawn;
+		var pawn = Game.LocalPawn;
 		if ( pawn == null ) return;
 
 		Position = pawn.EyePosition;
@@ -156,17 +156,17 @@ public class CarCamera : CameraMode
 		Viewer = null;
 	}
 
-	public override void BuildInput( InputBuilder input )
+	public override void BuildInput( InputBuilder Input )
 	{
-		base.BuildInput( input );
+		base.BuildInput( Input );
 
-		var pawn = Local.Pawn;
+		var pawn = Game.LocalPawn;
 		if ( pawn == null ) return;
 
 		var car = (pawn as SandboxPlayer)?.Vehicle as CarEntity;
 		if ( !car.IsValid() ) return;
 
-		if ( input.Pressed( InputButton.View ) )
+		if ( Input.Pressed( InputButton.View ) )
 		{
 			firstPerson = !firstPerson;
 			orbitYawRot = firstPerson ? Rotation.Identity : Rotation.FromYaw( car.Rotation.Yaw() );
@@ -176,7 +176,7 @@ public class CarCamera : CameraMode
 			timeSinceOrbit = 0.0f;
 		}
 
-		if ( (Math.Abs( input.AnalogLook.pitch ) + Math.Abs( input.AnalogLook.yaw )) > 0.0f )
+		if ( (Math.Abs( Input.AnalogLook.pitch ) + Math.Abs( Input.AnalogLook.yaw )) > 0.0f )
 		{
 			if ( !orbitEnabled )
 			{
@@ -190,22 +190,22 @@ public class CarCamera : CameraMode
 			orbitEnabled = true;
 			timeSinceOrbit = 0.0f;
 
-			orbitAngles.yaw += input.AnalogLook.yaw;
-			orbitAngles.pitch += input.AnalogLook.pitch;
+			orbitAngles.yaw += Input.AnalogLook.yaw;
+			orbitAngles.pitch += Input.AnalogLook.pitch;
 			orbitAngles = orbitAngles.Normal;
 			orbitAngles.pitch = orbitAngles.pitch.Clamp( MinOrbitPitch, MaxOrbitPitch );
 		}
 
 		if ( firstPerson )
 		{
-			input.ViewAngles = (car.Rotation * Rotation.From( orbitAngles )).Angles();
+			Input.ViewAngles = (car.Rotation * Rotation.From( orbitAngles )).Angles();
 		}
 		else
 		{
-			input.ViewAngles = orbitEnabled ? orbitAngles : car.Rotation.Angles();
+			Input.ViewAngles = orbitEnabled ? orbitAngles : car.Rotation.Angles();
 		}
 
-		input.ViewAngles = input.ViewAngles.Normal;
+		Input.ViewAngles = Input.ViewAngles.Normal;
 	}
 
 	private void ApplyShake( float speed )
@@ -226,3 +226,4 @@ public class CarCamera : CameraMode
 	}
 }
 
+*/

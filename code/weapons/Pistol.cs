@@ -22,10 +22,10 @@ partial class Pistol : Weapon
 		AmmoClip = ClipSize;
 	}
 
-	public override void SimulateAnimator( PawnAnimator anim )
+	/*public override void SimulateAnimator( PawnAnimator anim )
 	{
 		anim.SetAnimParameter( "holdtype", (int)HoldType.Pistol );
-	}
+	}*/
 
 	public override bool CanPrimaryAttack()
 	{
@@ -54,7 +54,7 @@ partial class Pistol : Weapon
 		//
 		// Shoot the bullets
 		//
-		ShootBullets( 0.2f, 1.5f, 9.0f, 3.0f );
+		ShootBullet(0.05f, 1.5f, 9.0f, 3.0f);
 
 	}
 }

@@ -1,4 +1,4 @@
-﻿using Sandbox;
+﻿/*using Sandbox;
 
 [Library]
 public class CarController : PawnController
@@ -18,7 +18,7 @@ public class CarController : PawnController
 		var car = player.Vehicle as CarEntity;
 		if ( !car.IsValid() ) return;
 
-		car.Simulate( Client );
+		car.Simulate( IClient );
 
 		if ( player.Vehicle == null )
 		{
@@ -35,3 +35,4 @@ public class CarController : PawnController
 		SetTag( "sitting" );
 	}
 }
+*/

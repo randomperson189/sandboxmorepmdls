@@ -24,14 +24,14 @@ partial class Tool : Weapon
 		SetModel( "weapons/rust_pistol/rust_pistol.vmdl" );
 	}
 
-	public override void Simulate( Client owner )
+	public override void Simulate( IClient owner )
 	{
 		UpdateCurrentTool( owner );
 
 		CurrentTool?.Simulate();
 	}
 
-	private void UpdateCurrentTool( Client owner )
+	private void UpdateCurrentTool( IClient owner )
 	{
 		var toolName = owner.GetClientData<string>( "tool_current", "tool_boxgun" );
 		if ( toolName == null )
@@ -83,7 +83,7 @@ partial class Tool : Weapon
 	{
 	}
 
-	[Event.Frame]
+	[Event.Client.Frame]
 	public void OnFrame()
 	{
 		if ( Owner is Player player && player.ActiveChild != this )
@@ -92,10 +92,10 @@ partial class Tool : Weapon
 		CurrentTool?.OnFrame();
 	}
 
-	public override void SimulateAnimator( PawnAnimator anim )
+	/*public override void SimulateAnimator( PawnAnimator anim )
 	{
 		anim.SetAnimParameter( "holdtype", (int)HoldType.Pistol );
-	}
+	}*/
 }
 
 namespace Sandbox.Tools
@@ -130,6 +130,17 @@ namespace Sandbox.Tools
 		public virtual void CreateHitEffects( Vector3 pos )
 		{
 			Parent?.CreateHitEffects( pos );
+		}
+
+		public virtual TraceResult DoTrace()
+		{
+			var startPos = Owner.EyePosition;
+			var dir = Owner.EyeRotation.Forward;
+
+			return Trace.Ray(startPos, startPos + (dir * MaxTraceDistance))
+				.WithAllTags("solid")
+				.Ignore(Owner)
+				.Run();
 		}
 	}
 }

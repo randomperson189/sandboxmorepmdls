@@ -20,7 +20,7 @@ public partial class PlayerModelSelect : Panel
 	{
 		Instance = this;
 
-		var game = (SandboxGame)SandboxGame.Current;
+		var GameManager = (SandboxGame)SandboxGame.Current;
 
 		StyleSheet.Load( "/ui/PlayerModelSelect.scss" );
 
@@ -41,9 +41,9 @@ public partial class PlayerModelSelect : Panel
 			panel.Add.Label( $"{file}.vmdl", "label" );
 		};
 		
-		Log.Info(game.playerModels);
+		Log.Info(GameManager.playerModels);
 		
-		foreach ( string file in game.playerModels )
+		foreach ( string file in GameManager.playerModels )
 		{
 			if ( string.IsNullOrWhiteSpace( file ) ) continue;
 

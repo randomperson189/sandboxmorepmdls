@@ -6,14 +6,16 @@ public partial class SandboxHud : HudEntity<RootPanel>
 {
 	public SandboxHud()
 	{
-		if ( !IsClient )
+		if ( !Game.IsClient )
 			return;
 
-		RootPanel.StyleSheet.Load( "/ui/SandboxHud.scss" );
+		//RootPanel.StyleSheet.Load( "/ui/SandboxHud.scss" );
+		RootPanel.StyleSheet.Load("/styles/sandbox.scss");
 
+		RootPanel.AddChild<Chat>();
 		//RootPanel.AddChild<NameTags>();
 		RootPanel.AddChild<Crosshair>();
-		RootPanel.AddChild<ChatBox>();
+		//RootPanel.AddChild<ChatBox>();
 		RootPanel.AddChild<VoiceList>();
 		RootPanel.AddChild<KillFeed>();
 		RootPanel.AddChild<Scoreboard<ScoreboardEntry>>();

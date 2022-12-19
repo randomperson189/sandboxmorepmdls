@@ -1,4 +1,5 @@
 ﻿using Sandbox;
+using Sandbox.Utility;
 
 [Spawnable]
 [Library( "noise_test", Title = "Noise Test" )]
@@ -12,17 +13,17 @@ public partial class NoiseTest : Prop
 		SetupPhysicsFromModel( PhysicsMotionType.Dynamic, false );
 	}
 
-	[Event.Frame]
+	[Event.Client.Frame]
 	public void OnFrame()
 	{
 		var pos = Position;
 		var right = Rotation.Right * 4;
 		var forward = Rotation.Forward * 4;
 		var up = Rotation.Up * 50;
-		var offset = Time.Now * 2.0f;
-		var offsetz = Time.Now * 0.1f;
+		var offset = Time.Now * 20.0f;
+		var offsetz = Time.Now;
 
-		var mode = (int)((Time.Now * 0.3f) % 5);
+		var mode = (int)((Time.Now * 0.3f) % 3);
 
 		switch ( mode )
 		{
@@ -34,25 +35,13 @@ public partial class NoiseTest : Prop
 
 			case 1:
 				{
-					DebugOverlay.Text( "SparseConvolution", pos );
+					DebugOverlay.Text( "Fbm", pos );
 					break;
 				}
 
 			case 2:
 				{
-					DebugOverlay.Text( "SparseConvolutionNormalized", pos );
-					break;
-				}
-
-			case 3:
-				{
-					DebugOverlay.Text( "Turbulence", pos );
-					break;
-				}
-
-			case 4:
-				{
-					DebugOverlay.Text( "Fractal", pos );
+					DebugOverlay.Text( "Simplex", pos );
 					break;
 				}
 		}
@@ -72,33 +61,23 @@ public partial class NoiseTest : Prop
 				{
 					case 0:
 						{
-							val = Noise.Perlin( x * 0.1f + offset, y * 0.1f, offsetz ) * 0.5f;
+							val = Noise.Perlin( x + offset, y, offsetz );
 							break;
 						}
 					case 1:
 						{
-							val = Noise.SparseConvolution( x * 0.1f + offset, y * 0.1f, offsetz ) * 0.5f;
+							val = Noise.Fbm( 2, x + offset, y, offsetz );
 							break;
 						}
 					case 2:
 						{
-							val = Noise.SparseConvolutionNormalized( x * 0.1f + offset, y * 0.1f, offsetz ) * 0.5f;
-							break;
-						}
-					case 3:
-						{
-							val = Noise.Turbulence( 2, x * 0.1f + offset, y * 0.1f, offsetz ) * 0.5f;
-							break;
-						}
-					case 4:
-						{
-							val = Noise.Fractal( 2, x * 0.1f + offset, y * 0.1f, offsetz ) * 0.5f;
+							val = Noise.Simplex( x + offset, y, offsetz );
 							break;
 						}
 				}
 
 				var start = pos + x * right + y * forward;
-				DebugOverlay.Line( start, start + up * val, Color.Lerp( Color.Red, Color.Green, (val + 1.0f) / 2.0f ) );
+				DebugOverlay.Line( start, start + up * val, Color.Lerp( Color.Red, Color.Green, val ) );
 			}
 	}
 }

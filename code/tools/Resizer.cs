@@ -7,7 +7,7 @@ namespace Sandbox.Tools
 	{
 		public override void Simulate()
 		{
-			if ( !Host.IsServer )
+			if ( !Game.IsServer)
 				return;
 
 			using ( Prediction.Off() )
@@ -22,11 +22,7 @@ namespace Sandbox.Tools
 				else if ( Input.Pressed( InputButton.Reload ) ) reset = true;
 				else return;
 
-				var tr = Trace.Ray( startPos, startPos + dir * MaxTraceDistance )
-				   .Ignore( Owner )
-				   .UseHitboxes()
-				   .HitLayer( CollisionLayer.Debris )
-				   .Run();
+				var tr = DoTrace();
 
 				if ( !tr.Hit || !tr.Entity.IsValid() )
 					return;

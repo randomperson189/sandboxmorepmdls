@@ -46,7 +46,7 @@ partial class SMG : Weapon
 		//
 		// Shoot the bullets
 		//
-		ShootBullets( 0.1f, 1.5f, 5.0f, 3.0f );
+		ShootBullet(0.1f, 1.5f, 5.0f, 3.0f);
 
 	}
 
@@ -58,12 +58,12 @@ partial class SMG : Weapon
 	[ClientRpc]
 	protected override void ShootEffects()
 	{
-		Host.AssertClient();
+		Game.AssertClient();
 
 		Particles.Create( "particles/pistol_muzzleflash.vpcf", EffectEntity, "muzzle" );
 		Particles.Create( "particles/pistol_ejectbrass.vpcf", EffectEntity, "ejection_point" );
 
-		/*if ( Owner == Local.Pawn )
+		/*if ( Owner == Game.LocalPawn )
 		{
 			new Sandbox.ScreenShake.Perlin(0.5f, 4.0f, 1.0f, 0.5f);
 		}*/
@@ -72,8 +72,8 @@ partial class SMG : Weapon
 		//CrosshairPanel?.CreateEvent( "fire" );
 	}
 
-	public override void SimulateAnimator( PawnAnimator anim )
+	/*public override void SimulateAnimator()
 	{
 		anim.SetAnimParameter( "holdtype", (int)HoldType.SMG );
-	}
+	}*/
 }

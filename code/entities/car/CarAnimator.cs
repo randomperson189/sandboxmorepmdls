@@ -1,4 +1,4 @@
-﻿
+﻿/*
 namespace Sandbox
 {
 	public class CarAnimator : PawnAnimator
@@ -35,3 +35,4 @@ namespace Sandbox
 		}
 	}
 }
+*/
